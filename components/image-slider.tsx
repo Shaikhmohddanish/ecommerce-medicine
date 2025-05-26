@@ -18,7 +18,7 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    image: "/slider-1.png?height=800&width=1600", // Your actual medicine product image
+    image: "/images/slider-1.PNG?height=800&width=1600", // Your actual medicine product image
     title: "Regain Your Confidence",
     subtitle: "Effective ED medications to help you enjoy intimate moments again.",
     cta: "Shop ED Solutions",
@@ -26,7 +26,7 @@ const slides: Slide[] = [
   },
   {
     id: 2,
-    image: "/slider-2.png?height=800&width=1600",
+    image: "/images/slider-2.PNG?height=800&width=1600",
     title: "Trusted Treatments, Discreet Delivery",
     subtitle: "Safe and FDA-approved tablets delivered right to your door.",
     cta: "Browse Medicines",
