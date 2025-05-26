@@ -18,14 +18,35 @@ export default function CheckoutPage() {
   const { cart, clearCart } = useCart()
   const [activeTab, setActiveTab] = useState("shipping")
 
-  // Calculate totals
-  const subtotal = cart.reduce((total, item) => {
-    return total + item.product.price * item.quantity
-  }, 0)
+  // Custom pricing logic for pills
+  function getPillPrice(qty: number) {
+    if (qty === 100) return 100
+    if (qty === 200) return 180
+    if (qty === 300) return 240
+    if (qty === 500) return 480
+    return qty * 1 // fallback: $1 per pill
+  }
 
-  const shipping = subtotal > 0 ? 4.99 : 0
-  const tax = subtotal * 0.08
-  const grandTotal = subtotal + shipping + tax
+  // Calculate correct subtotal and grand total based on line item logic
+  const getLineTotal = (item: any) => {
+    const isPill = item.product.variations && item.product.variations.some((v: string) => v.includes('pills')) && item.variation.includes('pills');
+    let pillQty = 0;
+    if (isPill) pillQty = parseInt(item.variation);
+    let price = 0;
+    if (isPill) {
+      if (pillQty === 100) price = 100;
+      else if (pillQty === 200) price = 180;
+      else if (pillQty === 300) price = 240;
+      else if (pillQty === 500) price = 480;
+      else price = pillQty;
+    } else {
+      price = item.product.price;
+    }
+    return price * item.quantity;
+  };
+  // Calculate totals
+  const subtotal = cart.reduce((total, item) => total + getLineTotal(item), 0);
+  const grandTotal = subtotal
 
   // Form states
   const [shippingInfo, setShippingInfo] = useState({
@@ -373,30 +394,44 @@ export default function CheckoutPage() {
                 <CardDescription>Review your order</CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
-                {cart.map((item, index) => (
-                  <div key={`${item.product.id}-${item.variation}`} className="flex justify-between pb-2 border-b">
-                    <div>
-                      <p className="font-medium text-sm">{item.product.name}</p>
-                      <p className="text-xs text-gray-500">
-                        {item.variation} × {item.quantity}
-                      </p>
+                {cart.map((item, index) => {
+                  // Determine if this is a pill product and get the correct variation quantity
+                  const isPill = item.product.variations && item.product.variations.some(v => v.includes('pills')) && item.variation.includes('pills');
+                  let pillQty = 0;
+                  if (isPill) pillQty = parseInt(item.variation);
+                  // Price for one pack (variation)
+                  let price = 0;
+                  if (isPill) {
+                    if (pillQty === 100) price = 100;
+                    else if (pillQty === 200) price = 180;
+                    else if (pillQty === 300) price = 240;
+                    else if (pillQty === 500) price = 480;
+                    else price = pillQty;
+                  } else {
+                    price = item.product.price;
+                  }
+                  // Total for this line
+                  const lineTotal = price * item.quantity;
+                  return (
+                    <div key={`${item.product.id}-${item.variation}`} className="flex justify-between pb-2 border-b">
+                      <div>
+                        <p className="font-medium text-sm">{item.product.name}</p>
+                        <p className="text-xs text-gray-500">
+                          {item.variation} × {item.quantity}
+                        </p>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-xs text-gray-500">{isPill ? `$${price.toFixed(2)}` : `$${item.product.price.toFixed(2)}`} each</div>
+                        <div className="font-medium text-sm">${lineTotal.toFixed(2)}</div>
+                      </div>
                     </div>
-                    <p className="font-medium text-sm">${(item.product.price * item.quantity).toFixed(2)}</p>
-                  </div>
-                ))}
+                  );
+                })}
 
                 <div className="pt-2 space-y-2">
                   <div className="flex justify-between">
                     <span className="text-sm">Subtotal</span>
                     <span className="font-medium text-sm">${subtotal.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm">Shipping</span>
-                    <span className="font-medium text-sm">${shipping.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-sm">Tax</span>
-                    <span className="font-medium text-sm">${tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between pt-2 border-t">
                     <span className="font-semibold">Total</span>

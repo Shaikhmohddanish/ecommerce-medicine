@@ -74,9 +74,13 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
     handleCloseModals()
   }
 
-  // Generate a random review count between 10 and 39
-  const getReviewCount = () => {
-    return Math.floor(Math.random() * 30) + 10
+  // Generate a deterministic review count between 10 and 39 based on product id
+  const getReviewCount = (productId: string) => {
+    let hash = 0
+    for (let i = 0; i < productId.length; i++) {
+      hash = productId.charCodeAt(i) + ((hash << 5) - hash)
+    }
+    return (Math.abs(hash) % 30) + 10
   }
 
   return (
@@ -130,7 +134,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
                     />
                   ))}
                 </div>
-                <span className="text-xs text-gray-500 ml-1">({getReviewCount()})</span>
+                <span className="text-xs text-gray-500 ml-1">({getReviewCount(product.id)})</span>
               </div>
 
               <h3 className="font-medium text-sm md:text-base mb-1 line-clamp-1 group-hover:text-primary transition-colors">

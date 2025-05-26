@@ -11,8 +11,8 @@ export function SiteFooter() {
         }}
       ></div>
       <div className="container py-8 md:py-12 px-4 md:px-6 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-          <div className="col-span-2 md:col-span-1 space-y-3 md:space-y-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
+          <div className="space-y-3 md:space-y-4">
             <h3 className="text-lg font-bold">ShopEase</h3>
             <p className="text-sm text-gray-600">Your one-stop shop for quality products at affordable prices.</p>
             <div className="flex space-x-4">
@@ -32,32 +32,6 @@ export function SiteFooter() {
           </div>
 
           <div className="space-y-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider">Shop</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/products" className="text-sm text-gray-600 hover:text-primary">
-                  All Products
-                </Link>
-              </li>
-              <li>
-                <Link href="/categories" className="text-sm text-gray-600 hover:text-primary">
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link href="/new-arrivals" className="text-sm text-gray-600 hover:text-primary">
-                  New Arrivals
-                </Link>
-              </li>
-              <li>
-                <Link href="/sale" className="text-sm text-gray-600 hover:text-primary">
-                  Sale
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-3">
             <h3 className="text-sm font-bold uppercase tracking-wider">Customer Service</h3>
             <ul className="space-y-2">
               <li>
@@ -66,13 +40,8 @@ export function SiteFooter() {
                 </Link>
               </li>
               <li>
-                <Link href="/shipping" className="text-sm text-gray-600 hover:text-primary">
-                  Shipping & Returns
-                </Link>
-              </li>
-              <li>
-                <Link href="/faq" className="text-sm text-gray-600 hover:text-primary">
-                  FAQ
+                <Link href="/shipping-policy" className="text-sm text-gray-600 hover:text-primary">
+                  Shipping Policy
                 </Link>
               </li>
               <li>
@@ -80,10 +49,25 @@ export function SiteFooter() {
                   Privacy Policy
                 </Link>
               </li>
+              <li>
+                <Link href="/terms" className="text-sm text-gray-600 hover:text-primary">
+                  Terms &amp; Conditions
+                </Link>
+              </li>
+              <li>
+                <Link href="/cancellation-refund-policy" className="text-sm text-gray-600 hover:text-primary">
+                  Cancellation &amp; Refund Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/telemedicine-consent" className="text-sm text-gray-600 hover:text-primary">
+                  Telemedicine Consent
+                </Link>
+              </li>
             </ul>
           </div>
 
-          <div className="col-span-2 md:col-span-1 space-y-3">
+          <div className="space-y-3">
             <h3 className="text-sm font-bold uppercase tracking-wider">Newsletter</h3>
             <p className="text-sm text-gray-600">Subscribe to our newsletter for the latest updates and offers.</p>
             <form className="flex flex-col space-y-2">
@@ -105,8 +89,15 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="border-t mt-8 md:mt-12 pt-6 text-center text-xs md:text-sm text-gray-600">
-          <p>&copy; {new Date().getFullYear()} ShopEase. All rights reserved.</p>
+        <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 mt-8 border-t pt-6 text-sm text-gray-500">
+          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+            <a href="/terms" className="hover:underline">Terms &amp; Conditions</a>
+            <a href="/privacy" className="hover:underline">Privacy Policy</a>
+            <a href="/shipping-policy" className="hover:underline">Shipping Policy</a>
+            <a href="/contact" className="hover:underline">Contact Us</a>
+            <a href="/cancellation-refund-policy" className="hover:underline">Cancellation &amp; Refund Policy</a>
+          </div>
+          <div className="mt-4 md:mt-0 text-center md:text-right w-full md:w-auto">&copy; {new Date().getFullYear()} SuperPill. All rights reserved.</div>
         </div>
       </div>
     </footer>

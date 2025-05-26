@@ -19,14 +19,29 @@ export default function CartPage() {
   const { setQuickViewProduct } = useQuickView()
   const [promoCode, setPromoCode] = useState("")
 
+  // Custom pricing logic for pills
+  function getPillPrice(qty: number) {
+    if (qty === 100) return 100
+    if (qty === 200) return 180
+    if (qty === 300) return 240
+    if (qty === 500) return 480
+    return qty * 1 // fallback: $1 per pill
+  }
+
   // Calculate totals
   const subtotal = cart.reduce((total, item) => {
-    return total + item.product.price * item.quantity
-  }, 0)
+    if (item.product.variations && item.product.variations.some(v => v.includes('pills')) && item.variation.includes('pills')) {
+      const qty = parseInt(item.variation);
+      if (qty === 100) return total + 100 * item.quantity;
+      if (qty === 200) return total + 180 * item.quantity;
+      if (qty === 300) return total + 240 * item.quantity;
+      if (qty === 500) return total + 480 * item.quantity;
+      return total + qty * item.quantity;
+    }
+    return total + item.product.price * item.quantity;
+  }, 0);
 
-  const shipping = subtotal > 0 ? 4.0 : 0
-  const tax = 0.0
-  const grandTotal = subtotal + shipping + tax
+  const grandTotal = subtotal
 
   const handleQuantityChange = (index: number, newQuantity: number) => {
     if (newQuantity < 1) return
@@ -146,7 +161,18 @@ export default function CartPage() {
                         </div>
 
                         <div className="col-span-2 text-center">
-                          <span className="font-medium text-xs md:text-base">${item.product.price.toFixed(2)}</span>
+                          <span className="font-medium text-xs md:text-base">{
+                            item.product.variations && item.product.variations.some(v => v.includes('pills')) && item.variation.includes('pills')
+                              ? (() => {
+                                  const qty = parseInt(item.variation);
+                                  if (qty === 100) return "$100.00";
+                                  if (qty === 200) return "$180.00";
+                                  if (qty === 300) return "$240.00";
+                                  if (qty === 500) return "$480.00";
+                                  return `$${qty}.00`;
+                                })()
+                              : `$${item.product.price.toFixed(2)}`
+                          }</span>
                         </div>
 
                         <div className="col-span-2">
@@ -173,9 +199,18 @@ export default function CartPage() {
                         </div>
 
                         <div className="col-span-2 text-right">
-                          <span className="font-medium text-xs md:text-base">
-                            ${(item.product.price * item.quantity).toFixed(2)}
-                          </span>
+                          <span className="font-medium text-xs md:text-base">{
+                            item.product.variations && item.product.variations.some(v => v.includes('pills')) && item.variation.includes('pills')
+                              ? (() => {
+                                  const qty = parseInt(item.variation);
+                                  if (qty === 100) return `$${(100 * item.quantity).toFixed(2)}`;
+                                  if (qty === 200) return `$${(180 * item.quantity).toFixed(2)}`;
+                                  if (qty === 300) return `$${(240 * item.quantity).toFixed(2)}`;
+                                  if (qty === 500) return `$${(480 * item.quantity).toFixed(2)}`;
+                                  return `$${(qty * item.quantity).toFixed(2)}`;
+                                })()
+                              : `$${(item.product.price * item.quantity).toFixed(2)}`
+                          }</span>
                         </div>
                       </div>
                     </div>
@@ -195,14 +230,6 @@ export default function CartPage() {
                   <div className="flex justify-between mb-2">
                     <span className="text-sm md:text-base">Subtotal</span>
                     <span className="font-medium text-sm md:text-base">${subtotal.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-sm md:text-base">Shipping</span>
-                    <span className="font-medium text-sm md:text-base">${shipping.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between mb-2">
-                    <span className="text-sm md:text-base">Tax</span>
-                    <span className="font-medium text-sm md:text-base">${tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between mb-6">
                     <span className="text-sm md:text-base">Grand Total</span>

@@ -45,9 +45,13 @@ export default function QuickViewModal({ product, onClose, onProceedToCheckout, 
     onAddToCart(product, quantity, variation)
   }
 
-  // Generate a random review count between 10 and 39
-  const getReviewCount = () => {
-    return Math.floor(Math.random() * 30) + 10
+  // Generate a deterministic review count between 10 and 39 based on product id
+  const getReviewCount = (productId: string) => {
+    let hash = 0
+    for (let i = 0; i < productId.length; i++) {
+      hash = productId.charCodeAt(i) + ((hash << 5) - hash)
+    }
+    return (Math.abs(hash) % 30) + 10
   }
 
   return (
@@ -114,7 +118,7 @@ export default function QuickViewModal({ product, onClose, onProceedToCheckout, 
                   />
                 ))}
               </div>
-              <span className="text-xs md:text-sm text-gray-500">({getReviewCount()} reviews)</span>
+              <span className="text-xs md:text-sm text-gray-500">({getReviewCount(product.id)} reviews)</span>
             </div>
 
             <div className="mt-3 md:mt-4">
