@@ -12,7 +12,29 @@ export function SiteFooter() {
       ></div>
       <div className="container py-8 md:py-12 px-4 md:px-6 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 items-start">
-          <div className="space-y-3 md:space-y-4">
+          {/* Newsletter first on mobile */}
+          <div className="order-1 md:order-3 space-y-3">
+            <h3 className="text-sm font-bold uppercase tracking-wider">Newsletter</h3>
+            <p className="text-sm text-gray-600">Subscribe to our newsletter for the latest updates and offers.</p>
+            <form className="flex flex-col space-y-2">
+              <div className="flex">
+                <input
+                  type="email"
+                  placeholder="Your email address"
+                  className="px-3 py-2 border rounded-l-md text-sm flex-1"
+                  required
+                />
+                <button
+                  type="submit"
+                  className="px-3 py-2 bg-primary text-primary-foreground rounded-r-md text-sm flex items-center justify-center"
+                >
+                  <Mail className="h-4 w-4" />
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div className="order-2 md:order-1 space-y-3 md:space-y-4">
             <h3 className="text-lg font-bold">ShopEase</h3>
             <p className="text-sm text-gray-600">Your one-stop shop for quality products at affordable prices.</p>
             <div className="flex space-x-4">
@@ -31,7 +53,7 @@ export function SiteFooter() {
             </div>
           </div>
 
-          <div className="space-y-3">
+          <div className="order-3 md:order-2 space-y-3">
             <h3 className="text-sm font-bold uppercase tracking-wider">Customer Service</h3>
             <ul className="space-y-2">
               <li>
@@ -66,38 +88,6 @@ export function SiteFooter() {
               </li>
             </ul>
           </div>
-
-          <div className="space-y-3">
-            <h3 className="text-sm font-bold uppercase tracking-wider">Newsletter</h3>
-            <p className="text-sm text-gray-600">Subscribe to our newsletter for the latest updates and offers.</p>
-            <form className="flex flex-col space-y-2">
-              <div className="flex">
-                <input
-                  type="email"
-                  placeholder="Your email address"
-                  className="px-3 py-2 border rounded-l-md text-sm flex-1"
-                  required
-                />
-                <button
-                  type="submit"
-                  className="px-3 py-2 bg-primary text-primary-foreground rounded-r-md text-sm flex items-center justify-center"
-                >
-                  <Mail className="h-4 w-4" />
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-
-        <div className="flex flex-col md:flex-row md:justify-between items-center gap-4 mt-8 border-t pt-6 text-sm text-gray-500">
-          <div className="flex flex-wrap gap-4 justify-center md:justify-start">
-            <a href="/terms" className="hover:underline">Terms &amp; Conditions</a>
-            <a href="/privacy" className="hover:underline">Privacy Policy</a>
-            <a href="/shipping-policy" className="hover:underline">Shipping Policy</a>
-            <a href="/contact" className="hover:underline">Contact Us</a>
-            <a href="/cancellation-refund-policy" className="hover:underline">Cancellation &amp; Refund Policy</a>
-          </div>
-          <div className="mt-4 md:mt-0 text-center md:text-right w-full md:w-auto">&copy; {new Date().getFullYear()} SuperPill. All rights reserved.</div>
         </div>
       </div>
     </footer>
