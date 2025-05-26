@@ -18,6 +18,21 @@ export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }
   const [quantity, setQuantity] = useState(1)
   const [variation, setVariation] = useState(product.variations[0])
 
+  // Helper to get price for selected variation
+  const getVariationPrice = (variation: string) => {
+    if (product.variations && variation && variation.includes('pills')) {
+      const qty = parseInt(variation)
+      if (qty === 100) return 100
+      if (qty === 200) return 180
+      if (qty === 300) return 240
+      if (qty === 500) return 480
+      return qty
+    }
+    return product.price
+  }
+
+  const price = getVariationPrice(variation)
+
   const decreaseQuantity = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1)
@@ -33,7 +48,7 @@ export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }
   }
 
   const handleAddToCart = () => {
-    onAddToCart(product, quantity, variation)
+    onAddToCart({ ...product, price }, quantity, variation)
     setQuantity(1) // Reset quantity for next time
     onClose()
   }
@@ -54,7 +69,7 @@ export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-medium text-base">{product.name}</h3>
-              <p className="text-sm text-gray-500">${product.price.toFixed(2)}</p>
+              <p className="text-sm text-gray-500">${price.toFixed(2)}</p>
             </div>
           </div>
 
@@ -105,7 +120,7 @@ export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }
           {/* Total */}
           <div className="flex justify-between items-center pt-2 border-t">
             <span className="font-medium">Total:</span>
-            <span className="font-bold text-lg">${(product.price * quantity).toFixed(2)}</span>
+            <span className="font-bold text-lg">${(price * quantity).toFixed(2)}</span>
           </div>
 
           {/* Add to Cart Button */}

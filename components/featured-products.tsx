@@ -39,17 +39,35 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
     setBuyNowProduct(product)
   }
 
+  // Instead of directly adding to cart, open the AddToCartPopup for user to select variation and quantity
   const handleAddToCartClick = (product: Product, e: React.MouseEvent) => {
     e.preventDefault()
     e.stopPropagation()
+    setAddToCartProduct(product)
+  }
 
-    // Directly add to cart and go to checkout
-    addToCart(product, 1, product.variations[0])
+  // Only add to cart, do not redirect
+  const handleAddToCart = (product: Product, quantity: number, variation: string) => {
+    addToCart(product, quantity, variation)
     toast({
       title: "Added to cart",
-      description: `${product.name} added to your cart`,
+      description: `${quantity} × ${product.name} (${variation}) added to your cart`,
     })
-    router.push("/checkout")
+    handleCloseModals()
+  }
+
+  // Helper to get price for selected variation
+  const getVariationPrice = (product: Product, variation: string) => {
+    // Pills pricing logic (example, adjust as needed)
+    if (product.variations && variation && variation.includes('pills')) {
+      const qty = parseInt(variation)
+      if (qty === 100) return 100
+      if (qty === 200) return 180
+      if (qty === 300) return 240
+      if (qty === 500) return 480
+      return qty
+    }
+    return product.price
   }
 
   const handleCloseModals = () => {
@@ -60,17 +78,7 @@ export default function FeaturedProducts({ products }: FeaturedProductsProps) {
 
   const handleProceedToCheckout = (product: Product, quantity: number, variation: string) => {
     addToCart(product, quantity, variation)
-    router.push("/checkout")
-    handleCloseModals()
-  }
-
-  const handleAddToCart = (product: Product, quantity: number, variation: string) => {
-    addToCart(product, quantity, variation)
-    toast({
-      title: "Added to cart",
-      description: `${quantity} × ${product.name} (${variation}) added to your cart`,
-    })
-    router.push("/checkout")
+    router.push("/cart") // Go to cart page instead of checkout
     handleCloseModals()
   }
 

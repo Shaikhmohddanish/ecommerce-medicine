@@ -221,40 +221,18 @@ export default function CartPage() {
 
             {/* Cart Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-                <div className="bg-gray-50 p-4 md:p-6 border-b">
-                  <h3 className="font-semibold text-gray-700 text-sm md:text-base">Summary</h3>
+              <div className="bg-white rounded-xl shadow-sm p-6 md:p-8">
+                <h2 className="text-lg md:text-xl font-semibold mb-4">Summary</h2>
+                <div className="flex flex-col gap-2 mb-6">
+                  <div className="flex justify-between font-bold text-base md:text-lg">
+                    <span>Grand Total</span>
+                    <span>${grandTotal.toFixed(2)}</span>
+                  </div>
                 </div>
 
-                <div className="p-4 md:p-6">
-                  <div className="flex justify-between mb-2">
-                    <span className="text-sm md:text-base">Subtotal</span>
-                    <span className="font-medium text-sm md:text-base">${subtotal.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between mb-6">
-                    <span className="text-sm md:text-base">Grand Total</span>
-                    <span className="font-medium text-sm md:text-base">${grandTotal.toFixed(2)}</span>
-                  </div>
-
-                  <form onSubmit={handleApplyPromoCode} className="mb-6">
-                    <div className="flex items-center gap-2">
-                      <Input
-                        type="text"
-                        placeholder="Enter promo code"
-                        value={promoCode}
-                        onChange={(e) => setPromoCode(e.target.value)}
-                        className="flex-1"
-                      />
-                      <Button type="submit" size="sm">
-                        Apply
-                      </Button>
-                    </div>
-                  </form>
-
-                  <Button onClick={handleCheckout} className="w-full" size="lg">
-                    Checkout
-                  </Button>
-                </div>
+                <Button onClick={handleCheckout} className="w-full" size="lg">
+                  Checkout
+                </Button>
               </div>
             </div>
           </div>

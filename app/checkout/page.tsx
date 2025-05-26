@@ -1,8 +1,7 @@
 "use client"
 
-import type React from "react"
+import React, { useState, useEffect } from "react"
 
-import { useState } from "react"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
@@ -12,6 +11,8 @@ import { ArrowLeft, CreditCard, Check } from "lucide-react"
 import { toast } from "@/components/ui/use-toast"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Select, SelectTrigger, SelectContent, SelectItem, SelectValue } from "@/components/ui/select"
+import { US_STATES, US_CITIES } from "@/lib/us-location-data"
 
 export default function CheckoutPage() {
   const router = useRouter()
@@ -30,9 +31,9 @@ export default function CheckoutPage() {
   // Calculate correct subtotal and grand total based on line item logic
   const getLineTotal = (item: any) => {
     const isPill = item.product.variations && item.product.variations.some((v: string) => v.includes('pills')) && item.variation.includes('pills');
+    let price = 0;
     let pillQty = 0;
     if (isPill) pillQty = parseInt(item.variation);
-    let price = 0;
     if (isPill) {
       if (pillQty === 100) price = 100;
       else if (pillQty === 200) price = 180;
@@ -67,6 +68,9 @@ export default function CheckoutPage() {
     expiryDate: "",
     cvv: "",
   })
+
+  // Add state for available cities based on selected state
+  const [availableCities, setAvailableCities] = useState<string[]>([])
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -114,6 +118,12 @@ export default function CheckoutPage() {
     clearCart()
     router.push("/order-confirmation")
   }
+
+  // Update city options when state changes
+  useEffect(() => {
+    const stateCities = US_CITIES[shippingInfo.state as keyof typeof US_CITIES] || [];
+    setAvailableCities(stateCities);
+  }, [shippingInfo.state]);
 
   if (cart.length === 0) {
     return (
@@ -172,6 +182,7 @@ export default function CheckoutPage() {
                             value={shippingInfo.firstName}
                             onChange={handleShippingChange}
                             required
+                            placeholder="Enter your first name"
                           />
                         </div>
                         <div className="space-y-2">
@@ -184,6 +195,7 @@ export default function CheckoutPage() {
                             value={shippingInfo.lastName}
                             onChange={handleShippingChange}
                             required
+                            placeholder="Enter your last name"
                           />
                         </div>
                       </div>
@@ -198,6 +210,7 @@ export default function CheckoutPage() {
                           value={shippingInfo.address}
                           onChange={handleShippingChange}
                           required
+                          placeholder="Enter your address"
                         />
                       </div>
 
@@ -211,6 +224,7 @@ export default function CheckoutPage() {
                             name="city"
                             value={shippingInfo.city}
                             onChange={handleShippingChange}
+                            placeholder="Type your city"
                             required
                           />
                         </div>
@@ -218,13 +232,20 @@ export default function CheckoutPage() {
                           <label htmlFor="state" className="text-sm font-medium">
                             State
                           </label>
-                          <Input
-                            id="state"
-                            name="state"
+                          <Select
                             value={shippingInfo.state}
-                            onChange={handleShippingChange}
+                            onValueChange={(value) => setShippingInfo((prev) => ({ ...prev, state: value, city: "" }))}
                             required
-                          />
+                          >
+                            <SelectTrigger id="state" name="state">
+                              <SelectValue placeholder="Select a state" />
+                            </SelectTrigger>
+                            <SelectContent>
+                              {US_STATES.map((state) => (
+                                <SelectItem key={state.value} value={state.value}>{state.label}</SelectItem>
+                              ))}
+                            </SelectContent>
+                          </Select>
                         </div>
                       </div>
 
@@ -239,6 +260,7 @@ export default function CheckoutPage() {
                             value={shippingInfo.zipCode}
                             onChange={handleShippingChange}
                             required
+                            placeholder="ZIP code"
                           />
                         </div>
                         <div className="space-y-2">
@@ -248,9 +270,10 @@ export default function CheckoutPage() {
                           <Input
                             id="country"
                             name="country"
-                            value={shippingInfo.country}
-                            onChange={handleShippingChange}
-                            required
+                            value="United States"
+                            readOnly
+                            disabled
+                            placeholder="Country"
                           />
                         </div>
                       </div>
@@ -267,6 +290,7 @@ export default function CheckoutPage() {
                             value={shippingInfo.phone}
                             onChange={handleShippingChange}
                             required
+                            placeholder="Phone number"
                           />
                         </div>
                         <div className="space-y-2">
@@ -280,6 +304,7 @@ export default function CheckoutPage() {
                             value={shippingInfo.email}
                             onChange={handleShippingChange}
                             required
+                            placeholder="Email address"
                           />
                         </div>
                       </div>
@@ -326,6 +351,7 @@ export default function CheckoutPage() {
                           name="nameOnCard"
                           value={paymentInfo.nameOnCard}
                           onChange={handlePaymentChange}
+                          placeholder="John Doe"
                           required
                         />
                       </div>
@@ -410,34 +436,30 @@ export default function CheckoutPage() {
                   } else {
                     price = item.product.price;
                   }
-                  // Total for this line
-                  const lineTotal = price * item.quantity;
+                  const itemTotal = price * item.quantity;
+
                   return (
                     <div key={`${item.product.id}-${item.variation}`} className="flex justify-between pb-2 border-b">
-                      <div>
-                        <p className="font-medium text-sm">{item.product.name}</p>
-                        <p className="text-xs text-gray-500">
-                          {item.variation} × {item.quantity}
-                        </p>
+                      <div className="flex-1">
+                        <p className="font-medium">{item.product.name}</p>
+                        <p className="text-gray-500">{item.variation}</p>
+                        <p className="text-gray-500">Qty: {item.quantity}</p>
                       </div>
-                      <div className="text-right">
-                        <div className="text-xs text-gray-500">{isPill ? `$${price.toFixed(2)}` : `$${item.product.price.toFixed(2)}`} each</div>
-                        <div className="font-medium text-sm">${lineTotal.toFixed(2)}</div>
+                      <div className="ml-4">
+                        <p className="font-medium">${itemTotal.toFixed(2)}</p>
                       </div>
                     </div>
-                  );
+                  )
                 })}
 
                 <div className="pt-2 space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-sm">Subtotal</span>
-                    <span className="font-medium text-sm">${subtotal.toFixed(2)}</span>
-                  </div>
-                  <div className="flex justify-between pt-2 border-t">
-                    <span className="font-semibold">Total</span>
-                    <span className="font-semibold">${grandTotal.toFixed(2)}</span>
+                    <span className="text-sm font-semibold">Grand Total</span>
+                    <span className="font-semibold text-lg">${grandTotal.toFixed(2)}</span>
                   </div>
                 </div>
+
+                <Button type="submit" className="w-full mt-4">Checkout</Button>
               </CardContent>
             </Card>
           </div>
