@@ -168,7 +168,7 @@ export default function PrivacyPolicyPage() {
                 Suite 102<br />
                 Burbank CA 91506<br />
                 USA<br />
-                Tel: 1 (800) 692-1890
+                Tel: 1 (888) 419-4055
               </div>
             </section>
           </div>

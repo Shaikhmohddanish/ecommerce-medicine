@@ -128,7 +128,8 @@ export default function RootLayout({
               "logo": "https://powerpill.us/images/powerpill-logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+1-800-692-1890",
+                "telephone": "+1-888-419-4055",
+                "email": "sales@powerpill.us",
                 "contactType": "customer service",
                 "availableLanguage": "English"
               },
