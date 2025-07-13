@@ -23,7 +23,7 @@ const categories = [
   },
   {
     id: "tadalafil", 
-    title: "Tadalafil (Calis)",
+    title: "Tadalafil",
     description: "Long-lasting treatment with up to 36 hours of effectiveness",
     details: "Available in 20mg, 40mg, 60mg, and 80mg strengths",
     image: "/images/calis-20.webp",
@@ -31,7 +31,7 @@ const categories = [
   },
   {
     id: "vardenafil",
-    title: "Vardenafil (Lavitra)", 
+    title: "Vardenafil", 
     description: "Fast-acting solution for on-demand results",
     details: "Available in 20mg, 40mg, and 60mg strengths",
     image: "/images/lavitra-20.webp",

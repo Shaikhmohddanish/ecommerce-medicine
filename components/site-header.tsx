@@ -49,12 +49,12 @@ export function SiteHeader() {
     },
     {
       href: "/categories/tadalafil",
-      label: "Tadalafil (Calis)",
+      label: "Tadalafil",
       description: "20mg - 80mg available"
     },
     {
       href: "/categories/vardenafil",
-      label: "Vardenafil (Lavitra)",
+      label: "Vardenafil",
       description: "20mg - 60mg available"
     },
   ]

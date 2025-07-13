@@ -15,12 +15,12 @@ const categoryInfo = {
     subtitle: "The original ED treatment"
   },
   tadalafil: {
-    title: "Tadalafil (Calis) Products", 
+    title: "Tadalafil Products", 
     description: "Long-lasting ED medication with up to 36 hours of effectiveness (20mg - 80mg). Perfect for spontaneous moments.",
     subtitle: "Extended duration treatment"
   },
   vardenafil: {
-    title: "Vardenafil (Lavitra) Products",
+    title: "Vardenafil Products",
     description: "Fast-acting ED solution for on-demand results (20mg - 60mg). Quick onset for reliable performance.",
     subtitle: "Rapid action formula"
   }

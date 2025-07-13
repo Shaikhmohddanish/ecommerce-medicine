@@ -81,10 +81,10 @@ export const products: Product[] = [
     rating: 4.8,
   },
 
-  // TADALAFIL (Calis/Cialis)
+  // TADALAFIL
   {
     id: "calis-20",
-    name: "Calis 20mg",
+    name: "Tadalafil 20mg",
     description: "Enjoy up to 36 hours of effectiveness with our most popular daily option.",
     price: 100,
     image: "/images/calis-20.webp",
@@ -97,7 +97,7 @@ export const products: Product[] = [
   },
   {
     id: "calis-40",
-    name: "Calis 40mg",
+    name: "Tadalafil 40mg",
     description: "Double the strength for men who want even more reliable results.",
     price: 100,
     image: "/images/calis-40.webp",
@@ -110,7 +110,7 @@ export const products: Product[] = [
   },
   {
     id: "calis-60",
-    name: "Calis 60mg",
+    name: "Tadalafil 60mg",
     description: "Strong support and longer-lasting effects for complete peace of mind.",
     price: 100,
     image: "/images/calis-60.webp",
@@ -123,7 +123,7 @@ export const products: Product[] = [
   },
   {
     id: "calis-80",
-    name: "Calis 80mg",
+    name: "Tadalafil 80mg",
     description: "Our highest strength for enhanced performance and lasting confidence.",
     price: 100,
     image: "/images/calis-80.webp",
@@ -135,10 +135,10 @@ export const products: Product[] = [
     rating: 4.8,
   },
 
-  // VARDENAFIL (Lavitra)
+  // VARDENAFIL
   {
     id: "lavitra-20",
-    name: "Lavitra (Vardenafil) 20mg",
+    name: "Vardenafil 20mg",
     description: "Fast-acting ED solution for on-demand results and spontaneous moments.",
     price: 100,
     image: "/images/lavitra-20.webp",
@@ -151,7 +151,7 @@ export const products: Product[] = [
   },
   {
     id: "lavitra-40",
-    name: "Lavitra (Vardenafil) 40mg",
+    name: "Vardenafil 40mg",
     description: "Increased potency for those needing a stronger ED solution.",
     price: 100,
     image: "/images/lavitra-40.webp",
@@ -164,7 +164,7 @@ export const products: Product[] = [
   },
   {
     id: "lavitra-60",
-    name: "Lavitra (Vardenafil) 60mg",
+    name: "Vardenafil 60mg",
     description: "Extra-strength dose for reliable, powerful performance when it matters.",
     price: 100,
     image: "/images/lavitra-60.webp",
