@@ -18,18 +18,34 @@ interface Slide {
 const slides: Slide[] = [
   {
     id: 1,
-    image: "/images/slider-1.PNG?height=800&width=1600", // Your actual medicine product image
+    image: "/images/slider-medical-1.jpg",
     title: "Regain Your Confidence",
-    subtitle: "Effective ED medications to help you enjoy intimate moments again.",
-    cta: "Shop ED Solutions",
+    subtitle: "Professional ED medications prescribed by licensed doctors. Discreet, effective, and FDA-approved treatments.",
+    cta: "Consult Now",
     ctaLink: "#featured-products",
   },
   {
     id: 2,
-    image: "/images/slider-2.PNG?height=800&width=1600",
-    title: "Trusted Treatments, Discreet Delivery",
-    subtitle: "Safe and FDA-approved tablets delivered right to your door.",
-    cta: "Browse Medicines",
+    image: "/images/slider-confidence.jpg",
+    title: "Trusted Medical Solutions",
+    subtitle: "Quality Sildenafil, Tadalafil, and Levitra tablets delivered safely to your door with complete privacy.",
+    cta: "Shop Treatments",
+    ctaLink: "#featured-products",
+  },
+  {
+    id: 3,
+    image: "/images/slider-medical-3.jpg",
+    title: "Professional Healthcare",
+    subtitle: "Expert consultation and genuine medications. Take control of your intimate health with confidence.",
+    cta: "Browse Products",
+    ctaLink: "#featured-products",
+  },
+  {
+    id: 4,
+    image: "/images/slider-pharmacy.jpg",
+    title: "Licensed Pharmacy",
+    subtitle: "Certified medications from a trusted pharmacy. Fast, secure delivery with 24/7 customer support.",
+    cta: "Order Now",
     ctaLink: "#featured-products",
   },
 ]
@@ -62,11 +78,11 @@ export default function ImageSlider() {
     goToSlide(newIndex)
   }, [currentSlide, goToSlide])
 
-  // Auto-advance slides every 3 seconds
+  // Auto-advance slides every 5 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       nextSlide()
-    }, 3000)
+    }, 5000)
 
     return () => clearInterval(interval)
   }, [nextSlide])
@@ -83,9 +99,9 @@ export default function ImageSlider() {
               index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0",
             )}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 via-blue-800/60 to-transparent z-10" />
             <Image
-              src={slide.image || "/placeholder.svg"}
+              src={slide.image || "/images/slider-fallback.jpg"}
               alt={slide.title}
               fill
               priority={index === 0}
@@ -95,7 +111,7 @@ export default function ImageSlider() {
               <div className="container px-4 md:px-6 mx-auto">
                 <div className="max-w-xl space-y-3 md:space-y-5 animate-fade-in-up">
                   <h2 className="text-sm md:text-base font-medium text-primary-foreground bg-primary inline-block px-3 py-1 rounded-full">
-                    Featured
+                    Licensed Medical
                   </h2>
                   <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold text-white leading-tight">{slide.title}</h1>
                   <p className="text-base md:text-xl text-gray-200 max-w-md">{slide.subtitle}</p>
