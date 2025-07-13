@@ -3,13 +3,100 @@ import { ShoppingBag, Truck, CreditCard, LifeBuoy } from "lucide-react"
 import { products } from "@/lib/products"
 import FeaturedProducts from "@/components/featured-products"
 import ImageSlider from "@/components/image-slider"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Powerpill - Buy ED Medications Online | Sildenafil, Tadalafil, Vardenafil",
+  description: "Shop premium erectile dysfunction medications online. FDA-approved Sildenafil (25mg-200mg), Tadalafil (20mg-80mg), and Vardenafil (20mg-60mg). Doctor consultation included.",
+  keywords: [
+    "buy ED medication online",
+    "sildenafil for sale",
+    "tadalafil online",
+    "vardenafil prescription",
+    "erectile dysfunction treatment",
+    "online ED pharmacy",
+    "men's health medication",
+    "prescription ED drugs"
+  ],
+  openGraph: {
+    title: "Powerpill - Buy ED Medications Online | Sildenafil, Tadalafil, Vardenafil",
+    description: "Shop premium erectile dysfunction medications online. FDA-approved medications with doctor consultation and discreet shipping.",
+    url: "https://powerpill.us",
+    images: [
+      {
+        url: "/images/powerpill-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Powerpill - Premium ED Medications Online",
+      },
+    ],
+  },
+  alternates: {
+    canonical: "https://powerpill.us",
+  },
+}
 
 export default function Home() {
   // Get all products
   const allProducts = products
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ItemList",
+            "itemListElement": allProducts.slice(0, 6).map((product, index) => ({
+              "@type": "ListItem",
+              "position": index + 1,
+              "item": {
+                "@type": "Product",
+                "name": product.name,
+                "description": product.description,
+                "image": `https://powerpill.us${product.image}`,
+                "url": `https://powerpill.us/products/${product.id}`,
+                "offers": {
+                  "@type": "Offer",
+                  "price": product.price,
+                  "priceCurrency": "USD",
+                  "availability": "https://schema.org/InStock"
+                },
+                "brand": {
+                  "@type": "Brand",
+                  "name": "Powerpill"
+                }
+              }
+            }))
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "MedicalBusiness",
+            "name": "Powerpill",
+            "description": "Online pharmacy specializing in erectile dysfunction medications",
+            "url": "https://powerpill.us",
+            "telephone": "+1-800-692-1890",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "1821 W. Verdugo Ave. Suite 102",
+              "addressLocality": "Burbank",
+              "addressRegion": "CA",
+              "postalCode": "91506",
+              "addressCountry": "US"
+            },
+            "openingHours": "Mo-Fr 09:00-18:00",
+            "medicalSpecialty": "Urology"
+          })
+        }}
+      />
+      
+      <div className="flex flex-col min-h-screen">
       {/* Hero Section with Image Slider */}
       <section className="relative overflow-hidden">
         <ImageSlider />
@@ -122,5 +209,6 @@ export default function Home() {
         </div>
       </section>
     </div>
+    </>
   )
 }

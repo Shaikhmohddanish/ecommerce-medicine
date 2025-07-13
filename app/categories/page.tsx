@@ -2,6 +2,15 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { getProductsByCategory } from "@/lib/products"
+import { Metadata } from "next"
+import { generateSEO, pageKeywords } from "@/lib/seo"
+
+export const metadata: Metadata = generateSEO({
+  title: "ED Medication Categories | Sildenafil, Tadalafil, Vardenafil | Powerpill",
+  description: "Browse our ED medication categories. Choose from Sildenafil (25mg-200mg), Tadalafil (20mg-80mg), and Vardenafil (20mg-60mg). Compare prices and dosages.",
+  keywords: pageKeywords.categories,
+  canonical: "https://powerpill.us/categories",
+})
 
 const categories = [
   {

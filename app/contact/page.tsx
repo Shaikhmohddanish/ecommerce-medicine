@@ -2,6 +2,10 @@
 
 import React from "react";
 import ContactForm from "@/components/contact-form";
+import { Metadata } from "next";
+
+// Note: Since this is a client component, metadata should be handled in layout.tsx or parent component
+// For now, we'll add SEO via document head manipulation
 
 export default function ContactPage() {
   return (
