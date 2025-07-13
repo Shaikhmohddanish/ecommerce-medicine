@@ -38,6 +38,11 @@ export function SiteHeader() {
       label: "Contact",
       active: pathname === "/contact",
     },
+    {
+      href: "/about",
+      label: "About Us",
+      active: pathname === "/about",
+    },
   ]
 
   // Product categories based on your actual products
