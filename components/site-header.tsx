@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname } from "next/navigation"
 import { ShoppingCart, Menu, X, ChevronDown } from "lucide-react"
 import { Button } from "@/components/ui/button"
@@ -116,7 +117,14 @@ export function SiteHeader() {
                 <div className="p-6 border-b border-gray-200">
                   <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-                      <span className="text-xl font-bold text-gray-900">Powerpill</span>
+                      <Image
+                        src="/images/powerpill-logo.png"
+                        alt="Powerpill Logo"
+                        width={120}
+                        height={40}
+                        className="h-8 w-auto"
+                        priority
+                      />
                     </Link>
                     <Button variant="ghost" size="sm" onClick={() => setIsMobileMenuOpen(false)}>
                       <X className="h-4 w-4" />
@@ -201,7 +209,14 @@ export function SiteHeader() {
           </Sheet>
 
           <Link href="/" className="flex items-center">
-            <span className="text-lg md:text-xl font-bold">Powerpill</span>
+            <Image
+              src="/images/powerpill-logo.png"
+              alt="Powerpill Logo"
+              width={140}
+              height={48}
+              className="h-10 w-auto md:h-12"
+              priority
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8 ml-6">

@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 import { Facebook, Instagram, Twitter, Mail } from "lucide-react"
 
 export function SiteFooter() {
@@ -35,7 +36,15 @@ export function SiteFooter() {
           </div>
 
           <div className="order-2 md:order-1 space-y-3 md:space-y-4">
-            <h3 className="text-lg font-bold">Powerpill</h3>
+            <Link href="/" className="inline-block">
+              <Image
+                src="/images/powerpill-logo.png"
+                alt="Powerpill Logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto"
+              />
+            </Link>
             <p className="text-sm text-gray-600">Your one-stop shop for quality products at affordable prices.</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-600 hover:text-primary">

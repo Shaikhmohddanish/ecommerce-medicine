@@ -13,7 +13,29 @@ const inter = Inter({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "Powerpill - Your One-Stop Shop",
   description: "Shop the latest products at affordable prices",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: [
+      {
+        url: '/images/powerpill-favicon.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: '/images/powerpill-favicon.png',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+    ],
+    shortcut: '/images/powerpill-favicon.png',
+    apple: [
+      {
+        url: '/images/powerpill-favicon.png',
+        sizes: '180x180',
+        type: 'image/png',
+      },
+    ],
+  },
 }
 
 export default function RootLayout({
