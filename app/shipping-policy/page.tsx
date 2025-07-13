@@ -9,7 +9,7 @@ export default function ShippingPolicyPage() {
         <h1 className="text-3xl md:text-4xl font-bold mb-2 text-primary text-center tracking-tight">Shipping Policy</h1>
         <div className="space-y-8">
           <section>
-            <p className="mb-3 leading-relaxed text-center text-gray-500">Thank you for visiting and shopping at <span className="font-semibold">SuperPill.com</span>. Following are the terms and conditions that constitute our Shipping Policy.</p>
+            <p className="mb-3 leading-relaxed text-center text-gray-500">Thank you for visiting and shopping at <span className="font-semibold">powerpill.us</span>. Following are the terms and conditions that constitute our Shipping Policy.</p>
           </section>
           <section>
             <h2 className="text-2xl font-semibold text-primary mb-3 mt-6">Domestic Shipping Policy</h2>
@@ -50,13 +50,13 @@ export default function ShippingPolicyPage() {
             <h3 className="text-xl font-semibold text-primary mb-2 mt-4">Shipment Destinations</h3>
             <p className="mb-3 leading-relaxed">We can ship to all US states, except for Alaska, North Dakota, Minnesota, and South Carolina.</p>
             <h3 className="text-xl font-semibold text-primary mb-2 mt-4">Shipment to P.O. boxes or APO/FPO addresses</h3>
-            <p className="mb-3 leading-relaxed">SuperPill.com ships to addresses within the U.S., U.S. Territories, and APO/FPO/DPO addresses.</p>
+            <p className="mb-3 leading-relaxed">powerpill.us ships to addresses within the U.S., U.S. Territories, and APO/FPO/DPO addresses.</p>
             <h3 className="text-xl font-semibold text-primary mb-2 mt-4">Shipment confirmation & Order tracking</h3>
             <p className="mb-3 leading-relaxed">You will receive a Shipment Confirmation email once your order has shipped containing your tracking number(s). The tracking number will be active within 24 hours.</p>
             <h3 className="text-xl font-semibold text-primary mb-2 mt-4">Customs, Duties and Taxes</h3>
-            <p className="mb-3 leading-relaxed">SuperPill.com is not responsible for any customs and taxes applied to your order. All fees imposed during or after shipping are the responsibility of the customer (tariffs, taxes, etc.).</p>
+            <p className="mb-3 leading-relaxed">powerpill.us is not responsible for any customs and taxes applied to your order. All fees imposed during or after shipping are the responsibility of the customer (tariffs, taxes, etc.).</p>
             <h3 className="text-xl font-semibold text-primary mb-2 mt-4">Damages</h3>
-            <p className="mb-3 leading-relaxed">SuperPill.com is not liable for any products damaged or lost during shipping. If you received your order damaged, please contact the shipment carrier to file a claim.</p>
+            <p className="mb-3 leading-relaxed">powerpill.us is not liable for any products damaged or lost during shipping. If you received your order damaged, please contact the shipment carrier to file a claim.</p>
             <p className="mb-3 leading-relaxed">Please save all packaging materials and damaged goods before filing a claim.</p>
           </section>
           <section>

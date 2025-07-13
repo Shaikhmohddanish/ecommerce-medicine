@@ -35,7 +35,7 @@ export function SiteFooter() {
           </div>
 
           <div className="order-2 md:order-1 space-y-3 md:space-y-4">
-            <h3 className="text-lg font-bold">ShopEase</h3>
+            <h3 className="text-lg font-bold">Powerpill</h3>
             <p className="text-sm text-gray-600">Your one-stop shop for quality products at affordable prices.</p>
             <div className="flex space-x-4">
               <Link href="#" className="text-gray-600 hover:text-primary">

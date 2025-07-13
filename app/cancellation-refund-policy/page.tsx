@@ -9,7 +9,7 @@ export default function CancellationRefundPolicyPage() {
         <h1 className="text-3xl md:text-4xl font-bold mb-2 text-primary text-center tracking-tight">Cancellation & Refund Policy</h1>
         <div className="space-y-8">
           <section>
-            <p className="mb-3 leading-relaxed text-center text-gray-500">Thanks for shopping at <span className="font-semibold">SuperPill.com</span>.</p>
+            <p className="mb-3 leading-relaxed text-center text-gray-500">Thanks for shopping at <span className="font-semibold">powerpill.us</span>.</p>
           </section>
           <section>
             <h2 className="text-2xl font-semibold text-primary mb-3 mt-6">Returns & Refunds</h2>

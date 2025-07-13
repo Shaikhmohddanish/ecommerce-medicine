@@ -60,7 +60,7 @@ export function SiteHeader() {
                 <div className="p-4 border-b">
                   <div className="flex items-center justify-between mb-4">
                     <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-                      <span className="text-xl font-bold">ShopEase</span>
+                      <span className="text-xl font-bold">Powerpill</span>
                     </Link>
                     <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
                       <X className="h-5 w-5" />
@@ -98,7 +98,7 @@ export function SiteHeader() {
           </Sheet>
 
           <Link href="/" className="flex items-center">
-            <span className="text-lg md:text-xl font-bold">ShopEase</span>
+            <span className="text-lg md:text-xl font-bold">Powerpill</span>
           </Link>
 
           <nav className="hidden md:flex gap-6 ml-6">

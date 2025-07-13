@@ -11,7 +11,7 @@ import { QuickViewProvider } from "@/lib/quick-view-context"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "ShopEase - Your One-Stop Shop",
+  title: "Powerpill - Your One-Stop Shop",
   description: "Shop the latest products at affordable prices",
     generator: 'v0.dev'
 }

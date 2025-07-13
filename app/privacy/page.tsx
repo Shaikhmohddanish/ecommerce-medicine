@@ -19,25 +19,25 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="mb-3 leading-relaxed">
               This policy describes the types of information{" "}
-              <span className="font-semibold">Super Pill Health Inc.</span>
-              (“SuperPill,” “we,” “our,” or “us”) may collect from you or that you
+              <span className="font-semibold">Powerpill.</span>
+              (“PowerPill,” “we,” “our,” or “us”) may collect from you or that you
               may provide when you visit the website{" "}
-              <span className="font-semibold">SuperPill.com</span> (our
+              <span className="font-semibold">powerpill.us</span> (our
               “Website”) and any affiliated mobile application (the “App”) and our
               practices for collecting, using, maintaining, protecting, and
               disclosing that information. This privacy policy does not apply to
-              any other website operated by SuperPill, or to any website operated
+              any other website operated by PowerPill, or to any website operated
               by third parties.
             </p>
             <p className="mb-3 leading-relaxed">
               This policy does not apply to information collected by us offline or
               through any other means, including on any other website operated by
-              SuperPill or any third party; or any third party, including
+              PowerPill or any third party; or any third party, including
               through any application or content (including advertising) that may
               link to or be accessible from or on the Website or the App.
             </p>
             <p className="mb-3 leading-relaxed">
-              SuperPill is committed to protecting your privacy. We provide this
+              PowerPill is committed to protecting your privacy. We provide this
               policy to explain the type of information we collect and to inform
               you of the specific practices and guidelines that protect the
               security and confidentiality of your personal information,
@@ -57,7 +57,7 @@ export default function PrivacyPolicyPage() {
               We do not provide any medical services through the Website or the
               App. We store information collected from you and may forward it to a
               healthcare provider. After you make a request through the Website,
-              SuperPill will nominate one or more doctors, licensed in the state
+              PowerPill will nominate one or more doctors, licensed in the state
               from which you request treatment, to work on your request.
             </p>
           </section>
@@ -195,7 +195,7 @@ export default function PrivacyPolicyPage() {
               visitors to our site and information such as the number of views a
               page gets, how much time a user spends on a page, and other
               pertinent web statistics. Cookies, by themselves, will not be used
-              by SuperPill to disclose your individual identity. This information
+              by PowerPill to disclose your individual identity. This information
               identifies your browser, but not you, to our servers when you visit
               the Website or the App. We do not respond to ‘do not track’ signals
               in your browser. We may also collect data by using “pixel tags,”
@@ -311,10 +311,10 @@ export default function PrivacyPolicyPage() {
               <li className="mb-2">
                 To a buyer or other successor in the event of a merger,
                 divestiture, restructuring, reorganization, dissolution, or other
-                sale or transfer of some or all of SuperPill’s assets, whether
+                sale or transfer of some or all of PowerPill’s assets, whether
                 as a going concern or as part of bankruptcy, liquidation, or
                 similar proceeding, in which personal information held by
-                SuperPill about our Website users or the App users is among the
+                PowerPill about our Website users or the App users is among the
                 assets transferred.
               </li>
               <li className="mb-2">
@@ -341,16 +341,16 @@ export default function PrivacyPolicyPage() {
               <li className="mb-2">
                 If we are under a duty to disclose or share your personal
                 information in order to comply with any legal obligation, or in
-                order to enforce or apply our terms of use SuperPill.com and
+                order to enforce or apply our terms of use powerpill.us and
                 other agreements, including for billing and collection purposes;
-                or to protect the rights, property, or safety of SuperPill, our
+                or to protect the rights, property, or safety of PowerPill, our
                 customers, or others. This may include exchanging information with
                 other companies and organizations for the purposes of fraud
                 protection and credit risk reduction.
               </li>
             </ul>
             <p className="mb-3 leading-relaxed">
-              SuperPill may be allowed or required to share your personal
+              PowerPill may be allowed or required to share your personal
               information (including your protected health information) in other
               ways – usually in ways that contribute to the public good, such as
               public health and research. We may have to meet many conditions in
@@ -367,7 +367,7 @@ export default function PrivacyPolicyPage() {
               .
             </p>
             <p className="mb-3 leading-relaxed">
-              SuperPill may share personal information, including protected
+              PowerPill may share personal information, including protected
               health information, about you for certain situations such as
               preventing disease, helping with product recalls, reporting adverse
               reactions to medications, preventing or reducing a serious threat
@@ -397,8 +397,8 @@ export default function PrivacyPolicyPage() {
                 websites.
               </li>
               <li className="mb-2">
-                Promotional Offers from SuperPill. If you do not wish to have
-                your contact information used by SuperPill to promote our own
+                Promotional Offers from PowerPill. If you do not wish to have
+                your contact information used by PowerPill to promote our own
                 products or services, you can check certain boxes on the forms we
                 use to collect your data. You can also always exercise your right
                 to ask us not to process your personal information for marketing
@@ -422,7 +422,7 @@ export default function PrivacyPolicyPage() {
               You may contact us to request access to, correct, or delete any
               personal information that you have provided to us. We cannot delete
               your personal information except by also deleting your user account.
-              If SuperPill deletes your user account, medical providers and other
+              If PowerPill deletes your user account, medical providers and other
               affiliates may still have the right to retain information as required
               by applicable law, regulations, or their own retention policy. We
               may not accommodate a request to change information if we believe
@@ -430,7 +430,7 @@ export default function PrivacyPolicyPage() {
               information to be incorrect.
             </p>
             <p className="mb-3 leading-relaxed">
-              Unless otherwise required by law, SuperPill will also erase personal
+              Unless otherwise required by law, PowerPill will also erase personal
               information when the personal information is no longer necessary in
               relation to the purposes for which was collected or otherwise
               processed; when you withdraw your consent (where lawfulness of
@@ -471,12 +471,12 @@ export default function PrivacyPolicyPage() {
             <p className="mb-3 leading-relaxed">
               Our Website may contain links or references to other websites
               outside of our control. Please be aware that this privacy policy
-              does not apply to these websites. SuperPill encourages you to read
+              does not apply to these websites. PowerPill encourages you to read
               the privacy statements and terms and conditions of linked or
               referenced websites you enter. These third-party websites may send
               their own cookies and other tracking devices to you, log your IP
               address, and otherwise collect data or solicit personal information.
-              SuperPill DOES NOT CONTROL AND IS NOT RESPONSIBLE FOR WHAT THIRD
+              PowerPill DOES NOT CONTROL AND IS NOT RESPONSIBLE FOR WHAT THIRD
               PARTIES DO IN CONNECTION WITH THEIR WEBSITES, OR HOW THEY HANDLE
               YOUR PERSONAL INFORMATION. PLEASE EXERCISE CAUTION AND CONSULT THE
               PRIVACY POLICIES POSTED ON EACH THIRD-PARTY WEBSITE FOR FURTHER
@@ -489,7 +489,7 @@ export default function PrivacyPolicyPage() {
             </h2>
             <p className="mb-3 leading-relaxed">
               Our Website or the App is not intended for children under 13 years
-              of age, and SuperPill does not knowingly collect or use any
+              of age, and PowerPill does not knowingly collect or use any
               personal information from children under the age of 13. No one under
               age 13 may provide any information to or on the Website or the App.
               By using the Website or the App, you confirm that you are not under
@@ -510,7 +510,7 @@ export default function PrivacyPolicyPage() {
             </p>
             <ul className="list-disc list-inside mb-3">
               <li className="mb-2">
-                <strong>Super Pill Health Inc.</strong>
+                <strong>Powerpill.</strong>
                 <br />
                 1821 W. Verdugo Ave.
                 <br />

@@ -11,7 +11,7 @@ export default function TelemedicineConsentPage() {
           <section>
             <h2 className="text-2xl font-semibold text-primary mb-3 mt-6">Patient Consent</h2>
             <p className="mb-3 leading-relaxed">Only use our services if you agree with the following information.</p>
-            <p className="mb-3 leading-relaxed">SuperPill is a Telemedicine platform that contracts with healthcare providers to provide you with affordable treatment of erectile dysfunction. We are not a pharmacy or any other healthcare provider.</p>
+            <p className="mb-3 leading-relaxed">PowerPill is a Telemedicine platform that contracts with healthcare providers to provide you with affordable treatment of erectile dysfunction. We are not a pharmacy or any other healthcare provider.</p>
           </section>
           <section>
             <h2 className="text-xl font-semibold text-primary mb-2 mt-4">What is Telemedicine?</h2>
@@ -52,11 +52,11 @@ export default function TelemedicineConsentPage() {
               <li>I understand that it is my duty to inform my doctor of electronic interactions regarding my care that I may have with other healthcare providers.</li>
               <li>I understand that I may expect the anticipated benefits from the use of telemedicine in my care, but that no results can be guaranteed or assured.</li>
               <li>I understand that ED is a risk marker for underlying cardiovascular disease and other health conditions that may warrant evaluation and treatment with my primary care provider.</li>
-              <li>I understand that I must read and understood the Terms of Use and the Privacy Policy prior to using services of SuperPill.</li>
-              <li>I understand that by using SuperPill, I accept the responsibility to provide full and truthful answers to all questions regarding my health. I understand that physicians working with SuperPill are unable to independently verify the information provided and will make a professional judgment based on the information that I provide.</li>
+              <li>I understand that I must read and understood the Terms of Use and the Privacy Policy prior to using services of PowerPill.</li>
+              <li>I understand that by using PowerPill, I accept the responsibility to provide full and truthful answers to all questions regarding my health. I understand that physicians working with PowerPill are unable to independently verify the information provided and will make a professional judgment based on the information that I provide.</li>
               <li>I understand that I will not receive any medical services beyond treatment of erectile dysfunction.</li>
               <li>I understand that men with symptoms of erectile dysfunction should undergo a thorough medical, sexual and psychological history evaluation, a physical examination, and selective laboratory testing as prescribed by primary care providers. I understand that Telemedicine services could not encompass all medical services to properly diagnose the cause and treatment of erectile dysfunction.</li>
-              <li>I understand that the prescribed medication may cause serious side effects, such as (but not limited to) a painful erection lasting more than 4 hours. I shall inform the prescribing physician of any allergies, use of recreational and prescription drugs.  I understand that if I have a condition where sex is not advised then I will not be using services of SuperPill.</li>
+              <li>I understand that the prescribed medication may cause serious side effects, such as (but not limited to) a painful erection lasting more than 4 hours. I shall inform the prescribing physician of any allergies, use of recreational and prescription drugs.  I understand that if I have a condition where sex is not advised then I will not be using services of PowerPill.</li>
             </ul>
           </section>
         </div>

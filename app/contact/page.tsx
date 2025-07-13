@@ -38,7 +38,7 @@ export default function ContactPage() {
           <div className="space-y-4">
             <div className="flex items-center gap-3">
               <Mail className="h-5 w-5 text-primary" />
-              <span className="text-sm">support@example.com</span>
+              <span className="text-sm">support@powerpill.us</span>
             </div>
             <div className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-primary" />
@@ -51,7 +51,7 @@ export default function ContactPage() {
           </div>
           <div className="flex gap-3 mt-4">
             <a
-              href="mailto:support@example.com"
+              href="mailto:support@powerpill.us"
               className="inline-flex items-center px-3 py-2 bg-primary text-white rounded hover:bg-primary/90 transition text-xs font-semibold"
             >
               <Mail className="h-4 w-4 mr-1" /> Email Us
