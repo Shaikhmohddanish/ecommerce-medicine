@@ -1,11 +1,13 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import type { Product } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { X, Minus, Plus, ShoppingCart } from "lucide-react"
+import { useCart } from "@/lib/cart-context"
 
 interface AddToCartPopupProps {
   product: Product
@@ -17,6 +19,8 @@ interface AddToCartPopupProps {
 export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }: AddToCartPopupProps) {
   const [quantity, setQuantity] = useState(1)
   const [variation, setVariation] = useState(product.variations[0])
+  const router = useRouter()
+  const { addToCart } = useCart()
 
   // Helper to get price for selected variation
   const getVariationPrice = (variation: string) => {
@@ -51,6 +55,12 @@ export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }
     onAddToCart({ ...product, price }, quantity, variation)
     setQuantity(1) // Reset quantity for next time
     onClose()
+  }
+  
+  const handleBuyNow = () => {
+    addToCart({ ...product, price }, quantity, variation)
+    onClose()
+    router.push('/checkout')
   }
 
   return (
@@ -123,11 +133,16 @@ export default function AddToCartPopup({ product, isOpen, onClose, onAddToCart }
             <span className="font-bold text-lg">${(price * quantity).toFixed(2)}</span>
           </div>
 
-          {/* Add to Cart Button */}
-          <Button className="w-full" onClick={handleAddToCart}>
-            <ShoppingCart className="h-4 w-4 mr-2" />
-            Add to Cart
-          </Button>
+          {/* Action Buttons */}
+          <div className="flex gap-2">
+            <Button className="flex-1" onClick={handleAddToCart}>
+              <ShoppingCart className="h-4 w-4 mr-2" />
+              Add to Cart
+            </Button>
+            <Button className="flex-1" variant="secondary" onClick={handleBuyNow}>
+              Buy Now
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>

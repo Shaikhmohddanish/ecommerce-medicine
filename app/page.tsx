@@ -178,36 +178,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Newsletter Section */}
-      <section className="py-10 md:py-16 bg-gradient-to-r from-primary to-primary-dark text-white relative overflow-hidden">
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: "url('/placeholder.svg?height=600&width=1200&text=Pattern')",
-            backgroundSize: "cover",
-          }}
-        ></div>
-        <div className="container px-4 md:px-6 relative z-10">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-2xl md:text-3xl font-bold tracking-tight mb-2 md:mb-4">Join Our Newsletter</h2>
-            <p className="mb-4 md:mb-6 text-gray-100 text-sm md:text-base">
-              Stay updated with our latest products and exclusive offers.
-            </p>
-            <form className="flex flex-col sm:flex-row gap-2 max-w-md mx-auto">
-              <input
-                type="email"
-                placeholder="Your email address"
-                className="px-3 md:px-4 py-2 md:py-3 rounded-md flex-1 text-foreground text-sm md:text-base"
-                required
-              />
-              <Button variant="secondary" className="py-2 md:py-3 px-4 md:px-6 font-medium text-sm md:text-base">
-                Subscribe
-              </Button>
-            </form>
-          </div>
-        </div>
-      </section>
     </div>
     </>
   )

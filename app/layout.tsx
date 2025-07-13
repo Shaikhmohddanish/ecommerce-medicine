@@ -139,11 +139,7 @@ export default function RootLayout({
                 "addressRegion": "CA",
                 "postalCode": "91506",
                 "addressCountry": "US"
-              },
-              "sameAs": [
-                "https://www.facebook.com/powerpill",
-                "https://www.twitter.com/powerpill"
-              ]
+              }
             })
           }}
         />
