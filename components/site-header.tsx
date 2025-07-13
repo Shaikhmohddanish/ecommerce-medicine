@@ -111,28 +111,28 @@ export function SiteHeader() {
                 <span className="sr-only">Open menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-[80%] max-w-[300px] p-0">
+            <SheetContent side="left" className="w-[280px] max-w-[280px] p-0">
               <div className="flex flex-col h-full">
-                <div className="p-4 border-b">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="p-6 border-b border-gray-200">
+                  <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
-                      <span className="text-xl font-bold">Powerpill</span>
+                      <span className="text-xl font-bold text-gray-900">Powerpill</span>
                     </Link>
-                    <Button variant="ghost" size="icon" onClick={() => setIsMobileMenuOpen(false)}>
-                      <X className="h-5 w-5" />
+                    <Button variant="ghost" size="sm" onClick={() => setIsMobileMenuOpen(false)}>
+                      <X className="h-4 w-4" />
                     </Button>
                   </div>
                 </div>
 
-                <div className="flex-1 overflow-auto py-4">
-                  <nav className="flex flex-col px-4 space-y-1">
+                <div className="flex-1 overflow-y-auto">
+                  <nav className="p-4 space-y-2">
                     {routes.map((route) => (
                       <Link
                         key={route.href}
                         href={route.href}
-                        className={`py-3 px-2 text-base rounded-md transition-colors ${
+                        className={`block py-3 px-4 text-sm font-medium rounded-lg transition-colors ${
                           route.active 
-                            ? "text-primary font-medium bg-primary/10" 
+                            ? "text-primary bg-primary/10" 
                             : "text-gray-700 hover:text-primary hover:bg-gray-50"
                         }`}
                         onClick={() => setIsMobileMenuOpen(false)}
@@ -142,19 +142,23 @@ export function SiteHeader() {
                     ))}
                     
                     {/* Product Categories for mobile */}
-                    <div className="mt-6 pt-4 border-t border-gray-200">
-                      <p className="text-sm font-semibold text-gray-900 mb-3 px-2">Product Categories</p>
+                    <div className="pt-6">
+                      <div className="px-4 pb-3">
+                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                          Product Categories
+                        </h3>
+                      </div>
                       <div className="space-y-1">
                         {categoryRoutes.map((category) => (
                           <Link
                             key={category.href}
                             href={category.href}
-                            className="block py-3 px-2 text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
+                            className="block py-3 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
-                            <div className="flex flex-col">
-                              <span className="font-medium text-sm">{category.label}</span>
-                              <span className="text-xs text-gray-500 mt-1">{category.description}</span>
+                            <div>
+                              <div className="font-medium">{category.label}</div>
+                              <div className="text-xs text-gray-500 mt-1">{category.description}</div>
                             </div>
                           </Link>
                         ))}
@@ -162,14 +166,18 @@ export function SiteHeader() {
                     </div>
 
                     {/* Support/Info for mobile */}
-                    <div className="mt-6 pt-4 border-t border-gray-200">
-                      <p className="text-sm font-semibold text-gray-900 mb-3 px-2">Support & Info</p>
+                    <div className="pt-6">
+                      <div className="px-4 pb-3">
+                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                          Support & Info
+                        </h3>
+                      </div>
                       <div className="space-y-1">
                         {supportRoutes.map((support) => (
                           <Link
                             key={support.href}
                             href={support.href}
-                            className="block py-3 px-2 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-md transition-colors"
+                            className="block py-3 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
                             onClick={() => setIsMobileMenuOpen(false)}
                           >
                             {support.label}
@@ -180,11 +188,11 @@ export function SiteHeader() {
                   </nav>
                 </div>
 
-                <div className="p-4 border-t mt-auto">
+                <div className="p-4 border-t border-gray-200">
                   <Button className="w-full" asChild>
                     <Link href="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                       <ShoppingCart className="h-4 w-4 mr-2" />
-                      Cart ({cartItemCount})
+                      Cart {cartItemCount > 0 && `(${cartItemCount})`}
                     </Link>
                   </Button>
                 </div>
