@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     url: "https://powerpill.us",
     images: [
       {
-        url: "/images/powerpill-logo.png",
+        url: "/logo.jpeg",
         width: 1200,
         height: 630,
         alt: "Powerpill - Premium ED Medications Online",
