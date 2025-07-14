@@ -115,7 +115,7 @@ export function SiteHeader() {
           className="flex items-center justify-center gap-2 w-full text-sm font-medium hover:bg-green-700 py-1 px-2 rounded transition-colors"
         >
           <Phone className="h-4 w-4" />
-          Call Us: {phoneNumber}
+          {phoneNumber}
         </button>
       </div>
 
@@ -225,7 +225,7 @@ export function SiteHeader() {
                     className="w-full mb-3 text-green-600 border-green-600 hover:bg-green-50"
                   >
                     <Phone className="h-4 w-4 mr-2" />
-                    Call Us: {phoneNumber}
+                    {phoneNumber}
                   </Button>
                   <Button className="w-full" asChild>
                     <Link href="/cart" onClick={() => setIsMobileMenuOpen(false)}>
@@ -303,7 +303,7 @@ export function SiteHeader() {
             className="hidden md:flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700 hover:bg-green-50 h-auto px-3 py-2"
           >
             <Phone className="h-4 w-4" />
-            Call Us
+            {phoneNumber}
           </Button>
 
           {/* Support dropdown for desktop */}
