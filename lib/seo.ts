@@ -14,7 +14,7 @@ export function generateSEO({
   description = "Buy premium erectile dysfunction medications online. FDA-approved Sildenafil, Tadalafil, and Vardenafil at affordable prices.",
   keywords = [],
   canonical,
-  ogImage = "/logo.jpeg",
+  ogImage = "/images/powerpill-logo.png",
   noIndex = false,
 }: SEOProps): Metadata {
   const baseKeywords = [

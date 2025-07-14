@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     description: "Buy premium erectile dysfunction medications online. FDA-approved Sildenafil, Tadalafil, and Vardenafil at affordable prices. Fast, discreet shipping with doctor consultation.",
     images: [
       {
-        url: "/logo.jpeg",
+        url: "/images/powerpill-logo.png",
         width: 1200,
         height: 630,
         alt: "Powerpill - Premium ED Medications Online",
@@ -74,7 +74,7 @@ export const metadata: Metadata = {
     creator: "@powerpill",
     title: "Powerpill - Premium ED Medications & Health Solutions Online",
     description: "Buy premium erectile dysfunction medications online. FDA-approved medications with doctor consultation and discreet shipping.",
-    images: ["/logo.jpeg"],
+    images: ["/images/powerpill-logo.png"],
   },
   alternates: {
     canonical: "https://powerpill.us",
@@ -82,22 +82,22 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: '/logo.jpeg',
+        url: '/images/powerpill-favicon.png',
         sizes: '32x32',
-        type: 'image/jpeg',
+        type: 'image/png',
       },
       {
-        url: '/logo.jpeg',
+        url: '/images/powerpill-favicon.png',
         sizes: '16x16',
-        type: 'image/jpeg',
+        type: 'image/png',
       },
     ],
-    shortcut: '/logo.jpeg',
+    shortcut: '/images/powerpill-favicon.png',
     apple: [
       {
-        url: '/logo.jpeg',
+        url: '/images/powerpill-favicon.png',
         sizes: '180x180',
-        type: 'image/jpeg',
+        type: 'image/png',
       },
     ],
   },
@@ -126,7 +126,7 @@ export default function RootLayout({
               "@type": "Organization",
               "name": "Powerpill",
               "url": "https://powerpill.us",
-              "logo": "https://powerpill.us/logo.jpeg",
+              "logo": "https://powerpill.us/images/powerpill-logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",
                 "telephone": "+1-888-419-4055",

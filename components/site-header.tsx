@@ -140,7 +140,7 @@ export function SiteHeader() {
                   <div className="flex items-center justify-between">
                     <Link href="/" className="flex items-center" onClick={() => setIsMobileMenuOpen(false)}>
                       <Image
-                        src="/logo.jpeg"
+                        src="/images/powerpill-logo.png"
                         alt="Powerpill Logo"
                         width={120}
                         height={40}
@@ -240,7 +240,7 @@ export function SiteHeader() {
 
           <Link href="/" className="flex items-center">
             <Image
-              src="/logo.jpeg"
+              src="/images/powerpill-logo.png"
               alt="Powerpill Logo"
               width={140}
               height={48}

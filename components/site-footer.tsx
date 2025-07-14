@@ -15,7 +15,7 @@ export function SiteFooter() {
           <div className="space-y-3 md:space-y-4">
             <Link href="/" className="inline-block">
               <Image
-                src="/logo.jpeg"
+                src="/images/powerpill-logo.png"
                 alt="Powerpill Logo"
                 width={120}
                 height={40}
