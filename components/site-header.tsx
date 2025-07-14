@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { ShoppingCart, Menu, X, ChevronDown } from "lucide-react"
+import { ShoppingCart, Menu, X, ChevronDown, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { 
@@ -21,6 +21,11 @@ export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { cart } = useCart()
+  const phoneNumber = "+1-888-419-4055"
+
+  const handleCall = () => {
+    window.location.href = `tel:${phoneNumber}`
+  }
 
   const routes = [
     {
@@ -102,11 +107,23 @@ export function SiteHeader() {
   }, [])
 
   return (
-    <header
-      className={`sticky top-0 z-40 w-full transition-all duration-200 ${
-        isScrolled ? "bg-white shadow-sm" : "bg-white"
-      }`}
-    >
+    <>
+      {/* Call Us Banner for Mobile */}
+      <div className="md:hidden bg-green-600 text-white text-center py-2 px-4">
+        <button 
+          onClick={handleCall}
+          className="flex items-center justify-center gap-2 w-full text-sm font-medium hover:bg-green-700 py-1 px-2 rounded transition-colors"
+        >
+          <Phone className="h-4 w-4" />
+          Call Us: {phoneNumber}
+        </button>
+      </div>
+
+      <header
+        className={`sticky top-0 z-40 w-full transition-all duration-200 ${
+          isScrolled ? "bg-white shadow-sm" : "bg-white"
+        }`}
+      >
       <div className="container flex h-16 items-center justify-between bg-white">
         <div className="flex items-center gap-4">
           {/* Mobile menu button */}
@@ -202,6 +219,14 @@ export function SiteHeader() {
                 </div>
 
                 <div className="p-4 border-t border-gray-200">
+                  <Button 
+                    onClick={handleCall}
+                    variant="outline" 
+                    className="w-full mb-3 text-green-600 border-green-600 hover:bg-green-50"
+                  >
+                    <Phone className="h-4 w-4 mr-2" />
+                    Call Us: {phoneNumber}
+                  </Button>
                   <Button className="w-full" asChild>
                     <Link href="/cart" onClick={() => setIsMobileMenuOpen(false)}>
                       <ShoppingCart className="h-4 w-4 mr-2" />
@@ -271,6 +296,16 @@ export function SiteHeader() {
         </div>
 
         <div className="flex items-center gap-4">
+          {/* Call Us button for desktop */}
+          <Button 
+            onClick={handleCall}
+            variant="ghost" 
+            className="hidden md:flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700 hover:bg-green-50 h-auto px-3 py-2"
+          >
+            <Phone className="h-4 w-4" />
+            Call Us
+          </Button>
+
           {/* Support dropdown for desktop */}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -304,5 +339,6 @@ export function SiteHeader() {
         </div>
       </div>
     </header>
+    </>
   )
 }

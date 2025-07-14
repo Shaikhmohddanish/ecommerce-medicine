@@ -4,6 +4,7 @@ import { Inter } from "next/font/google"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
+import { FloatingPhone } from "@/components/floating-phone"
 import { CartProvider } from "@/lib/cart-context"
 import { Toaster } from "@/components/ui/toaster"
 import { QuickViewProvider } from "@/lib/quick-view-context"
@@ -169,6 +170,7 @@ export default function RootLayout({
               <SiteHeader />
               <main className="flex-1">{children}</main>
               <SiteFooter />
+              <FloatingPhone />
               <Toaster />
             </div>
           </QuickViewProvider>
