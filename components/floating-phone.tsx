@@ -11,16 +11,15 @@ export function FloatingPhone() {
   }
 
   return (
-    <div className="fixed bottom-6 left-6 z-50">
+    <div className="fixed bottom-8 left-8 z-[9999]">
       {/* Pulse animation ring */}
-      <div className="absolute inset-0 h-14 w-14 bg-green-600 rounded-full animate-ping opacity-30"></div>
+      <div className="absolute inset-0 h-16 w-16 bg-green-500 rounded-full animate-ping opacity-40"></div>
       <Button
         onClick={handleCall}
-        size="lg"
-        className="relative h-14 w-14 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 bg-green-600 hover:bg-green-700 text-white border-4 border-white hover:scale-110 flex items-center justify-center"
+        className="relative h-16 w-16 rounded-full shadow-2xl hover:shadow-3xl transition-all duration-300 bg-green-500 hover:bg-green-600 text-white border-4 border-white hover:scale-110 flex items-center justify-center p-0"
         aria-label={`Call us at ${phoneNumber}`}
       >
-        <Phone className="h-7 w-7 text-white" />
+        <Phone className="h-8 w-8 text-white fill-current" />
       </Button>
     </div>
   )
