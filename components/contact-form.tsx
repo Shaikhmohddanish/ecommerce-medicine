@@ -2,7 +2,7 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
@@ -37,8 +37,6 @@ export default function ContactForm() {
     if (!formData.phone.trim()) newErrors.phone = "Phone number is required"
     else if (!/^\+?[\d\s\-\(\)]+$/.test(formData.phone)) newErrors.phone = "Phone number is invalid"
     if (!formData.inquiryType) newErrors.inquiryType = "Please select an inquiry type"
-    if (!formData.message.trim()) newErrors.message = "Message is required"
-    else if (formData.message.trim().length < 10) newErrors.message = "Message must be at least 10 characters"
 
     setErrors(newErrors)
     return Object.keys(newErrors).length === 0
@@ -76,8 +74,47 @@ export default function ContactForm() {
     setIsSubmitting(true)
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000))
+      // Create form data to send to Google Sheets
+      const formDataToSend = new FormData();
+      formDataToSend.append('name', formData.name);
+      formDataToSend.append('email', formData.email);
+      formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('company', formData.company || 'Not provided');
+      formDataToSend.append('subject', formData.subject || 'Contact Form Inquiry');
+      formDataToSend.append('inquiryType', formData.inquiryType);
+      formDataToSend.append('preferredContact', formData.preferredContact || 'Not specified');
+      
+      // Use the product interest message if the message field is empty
+      const messageToSend = formData.message || productInterestMessage;
+      formDataToSend.append('message', messageToSend);
+      
+      // Add cart items if any
+      if (cart.length > 0) {
+        const cartItems = cart.map(item => `${item.product.name} (${item.variation}) x${item.quantity}`).join(", ");
+        formDataToSend.append('cartItems', cartItems);
+      } else {
+        formDataToSend.append('cartItems', 'No items in cart');
+      }
+      
+      // Submit to Google Sheets via our API endpoint
+      const response = await fetch('/api/google-form-proxy', {
+        method: 'POST',
+        body: formDataToSend,
+      });
+      
+      const result = await response.json();
+      
+      // Check for errors in the response
+      if (!response.ok) {
+        throw new Error(result.error || 'Something went wrong with your submission');
+      }
+      
+      // Check if the submission was successful - this works with our updated handler
+      if (result.success === false) {
+        throw new Error(result.message || 'Form submission failed');
+      }
+      
+      console.log('Form submission successful:', result);
       
       toast({
         title: "Inquiry Submitted Successfully!",
@@ -95,13 +132,17 @@ export default function ContactForm() {
         message: "",
       })
     } catch (error) {
+      console.error('Contact form submission error:', error);
+      
       toast({
         title: "Submission Failed",
-        description: "There was an error submitting your inquiry. Please try again.",
+        description: error instanceof Error ? error.message : "There was an error submitting your inquiry. Please try again.",
         variant: "destructive",
-      })
+      });
+      
+      // You might want to log this error to your monitoring system
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
   }
 
@@ -110,6 +151,16 @@ export default function ContactForm() {
     cart.length > 0
       ? `I'm interested in the following products: ${cart.map((item) => `${item.product.name} (${item.variation}) x${item.quantity}`).join(", ")}.`
       : ""
+      
+  // Initialize the message field with product interest message when cart changes
+  useEffect(() => {
+    if (cart.length > 0 && !formData.message) {
+      setFormData(prev => ({
+        ...prev,
+        message: productInterestMessage
+      }));
+    }
+  }, [cart.length, productInterestMessage]);
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -277,7 +328,7 @@ export default function ContactForm() {
 
           <div className="space-y-2">
             <label htmlFor="message" className="text-sm font-medium text-gray-700">
-              Message <span className="text-red-500 ml-1">*</span>
+              Message
             </label>
             <Textarea
               id="message"
@@ -285,12 +336,8 @@ export default function ContactForm() {
               rows={6}
               value={formData.message || productInterestMessage}
               onChange={handleChange}
-              className={errors.message ? "border-red-500" : ""}
-              placeholder="Please provide detailed information about your inquiry, including any specific questions or requirements."
-              required
+              placeholder="Please provide information about your inquiry, including any specific questions or requirements."
             />
-            {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
-            <p className="text-xs text-gray-500">Minimum 10 characters</p>
           </div>
 
           {cart.length > 0 && (
