@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator
 } from "@/components/ui/dropdown-menu"
+import { ScrollArea } from "@/components/ui/scroll-area"
 import { useState, useEffect } from "react"
 import { useCart } from "@/lib/cart-context"
 
@@ -52,21 +53,86 @@ export function SiteHeader() {
 
   // Product categories based on your actual products
   const categoryRoutes = [
+    // ED Medications
     {
       href: "/categories/sildenafil",
       label: "Sildenafil",
-      description: "25mg - 200mg available"
+      description: "ED medication (25mg - 200mg)"
     },
     {
       href: "/categories/tadalafil",
       label: "Tadalafil",
-      description: "20mg - 80mg available"
+      description: "ED medication (20mg - 80mg)"
     },
     {
       href: "/categories/vardenafil",
       label: "Vardenafil",
-      description: "20mg - 60mg available"
+      description: "ED medication (20mg - 60mg)"
     },
+    // Pain Medications
+    {
+      href: "/categories/hydrocodone",
+      label: "Hydrocodone",
+      description: "Pain relief medication"
+    },
+    {
+      href: "/categories/oxycodone",
+      label: "Oxycodone",
+      description: "Pain relief medication"
+    },
+    {
+      href: "/categories/oxycontin",
+      label: "Oxycontin",
+      description: "Extended-release pain relief"
+    },
+    {
+      href: "/categories/percocet",
+      label: "Percocet",
+      description: "Combination pain relief"
+    },
+    {
+      href: "/categories/tramadol",
+      label: "Tramadol",
+      description: "Moderate pain relief"
+    },
+    // Anti-Anxiety Medications
+    {
+      href: "/categories/xanax",
+      label: "Xanax",
+      description: "Anti-anxiety medication"
+    },
+    {
+      href: "/categories/alprazolam",
+      label: "Alprazolam",
+      description: "Generic Xanax"
+    },
+    {
+      href: "/categories/ativan",
+      label: "Ativan",
+      description: "Anti-anxiety & sleep aid"
+    },
+    {
+      href: "/categories/valium",
+      label: "Valium",
+      description: "Anti-anxiety medication"
+    },
+    // Sleep Aids
+    {
+      href: "/categories/ambien",
+      label: "Ambien",
+      description: "Sleep aid medication"
+    },
+    {
+      href: "/categories/zolpidem",
+      label: "Zolpidem",
+      description: "Generic Ambien"
+    },
+    // ADHD Medication
+    {
+      href: "/categories/adderall",
+      label: "Adderall",
+      description: "ADHD medication"
+    }
   ]
 
   // Support/Info pages that exist
@@ -173,25 +239,107 @@ export function SiteHeader() {
                     
                     {/* Product Categories for mobile */}
                     <div className="pt-6">
-                      <div className="px-4 pb-3">
-                        <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
-                          Product Categories
-                        </h3>
-                      </div>
-                      <div className="space-y-1">
-                        {categoryRoutes.map((category) => (
-                          <Link
-                            key={category.href}
-                            href={category.href}
-                            className="block py-3 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
-                            onClick={() => setIsMobileMenuOpen(false)}
-                          >
-                            <div>
-                              <div className="font-medium">{category.label}</div>
-                              <div className="text-xs text-gray-500 mt-1">{category.description}</div>
-                            </div>
-                          </Link>
-                        ))}
+                      <ScrollArea className="h-[400px] pr-3">
+                        <div>
+                          {/* ED Medications */}
+                          <div className="px-4 pb-2">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                              ED Medications
+                            </h3>
+                          </div>
+                          <div className="space-y-1 mb-4">
+                            {categoryRoutes.slice(0, 3).map((category) => (
+                              <Link
+                                key={category.href}
+                                href={category.href}
+                                className="block py-2 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <div>
+                                  <div className="font-medium">{category.label}</div>
+                                  <div className="text-xs text-gray-500 mt-1">{category.description}</div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          
+                          {/* Pain Medications */}
+                          <div className="px-4 pb-2">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                              Pain Medications
+                            </h3>
+                          </div>
+                          <div className="space-y-1 mb-4">
+                            {categoryRoutes.slice(3, 8).map((category) => (
+                              <Link
+                                key={category.href}
+                                href={category.href}
+                                className="block py-2 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <div>
+                                  <div className="font-medium">{category.label}</div>
+                                  <div className="text-xs text-gray-500 mt-1">{category.description}</div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          
+                          {/* Anti-Anxiety Medications */}
+                          <div className="px-4 pb-2">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                              Anti-Anxiety
+                            </h3>
+                          </div>
+                          <div className="space-y-1 mb-4">
+                            {categoryRoutes.slice(8, 12).map((category) => (
+                              <Link
+                                key={category.href}
+                                href={category.href}
+                                className="block py-2 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <div>
+                                  <div className="font-medium">{category.label}</div>
+                                  <div className="text-xs text-gray-500 mt-1">{category.description}</div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                          
+                          {/* Sleep & ADHD Medications */}
+                          <div className="px-4 pb-2">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
+                              Sleep & ADHD
+                            </h3>
+                          </div>
+                          <div className="space-y-1 mb-4">
+                            {categoryRoutes.slice(12).map((category) => (
+                              <Link
+                                key={category.href}
+                                href={category.href}
+                                className="block py-2 px-4 text-sm text-gray-700 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                                onClick={() => setIsMobileMenuOpen(false)}
+                              >
+                                <div>
+                                  <div className="font-medium">{category.label}</div>
+                                  <div className="text-xs text-gray-500 mt-1">{category.description}</div>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      </ScrollArea>
+                      
+                      {/* View All Link */}
+                      <div className="mt-4 px-4">
+                        <Link 
+                          href="/categories"
+                          className="block py-3 px-4 text-sm font-medium text-primary hover:bg-gray-50 rounded-lg transition-colors text-center"
+                          onClick={() => setIsMobileMenuOpen(false)}
+                        >
+                          View All Categories
+                        </Link>
                       </div>
                     </div>
 
@@ -263,15 +411,65 @@ export function SiteHeader() {
                         <ChevronDown className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="start" className="w-64 mt-2">
-                      {categoryRoutes.map((category) => (
-                        <DropdownMenuItem key={category.href} asChild className="p-0">
-                          <Link href={category.href} className="flex flex-col items-start p-3 w-full">
-                            <span className="font-medium text-sm">{category.label}</span>
-                            <span className="text-xs text-gray-500 mt-1">{category.description}</span>
-                          </Link>
-                        </DropdownMenuItem>
-                      ))}
+                    <DropdownMenuContent align="start" className="w-80 mt-2">
+                      <ScrollArea className="h-[400px]">
+                        <div className="p-1">
+                          {/* ED Medications */}
+                          <div className="px-3 pt-2 pb-1">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">ED Medications</h3>
+                          </div>
+                          {categoryRoutes.slice(0, 3).map((category) => (
+                            <DropdownMenuItem key={category.href} asChild className="p-0">
+                              <Link href={category.href} className="flex flex-col items-start p-3 w-full">
+                                <span className="font-medium text-sm">{category.label}</span>
+                                <span className="text-xs text-gray-500 mt-1">{category.description}</span>
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                          
+                          {/* Pain Medications */}
+                          <DropdownMenuSeparator />
+                          <div className="px-3 pt-2 pb-1">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Pain Medications</h3>
+                          </div>
+                          {categoryRoutes.slice(3, 8).map((category) => (
+                            <DropdownMenuItem key={category.href} asChild className="p-0">
+                              <Link href={category.href} className="flex flex-col items-start p-3 w-full">
+                                <span className="font-medium text-sm">{category.label}</span>
+                                <span className="text-xs text-gray-500 mt-1">{category.description}</span>
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                          
+                          {/* Anti-Anxiety Medications */}
+                          <DropdownMenuSeparator />
+                          <div className="px-3 pt-2 pb-1">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Anti-Anxiety</h3>
+                          </div>
+                          {categoryRoutes.slice(8, 12).map((category) => (
+                            <DropdownMenuItem key={category.href} asChild className="p-0">
+                              <Link href={category.href} className="flex flex-col items-start p-3 w-full">
+                                <span className="font-medium text-sm">{category.label}</span>
+                                <span className="text-xs text-gray-500 mt-1">{category.description}</span>
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                          
+                          {/* Sleep & ADHD Medications */}
+                          <DropdownMenuSeparator />
+                          <div className="px-3 pt-2 pb-1">
+                            <h3 className="text-xs font-semibold text-gray-500 uppercase tracking-wider">Sleep & ADHD</h3>
+                          </div>
+                          {categoryRoutes.slice(12).map((category) => (
+                            <DropdownMenuItem key={category.href} asChild className="p-0">
+                              <Link href={category.href} className="flex flex-col items-start p-3 w-full">
+                                <span className="font-medium text-sm">{category.label}</span>
+                                <span className="text-xs text-gray-500 mt-1">{category.description}</span>
+                              </Link>
+                            </DropdownMenuItem>
+                          ))}
+                        </div>
+                      </ScrollArea>
                       <DropdownMenuSeparator />
                       <DropdownMenuItem asChild className="p-0">
                         <Link href="/categories" className="font-medium p-3 w-full">View All Categories</Link>

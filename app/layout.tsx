@@ -1,5 +1,5 @@
 import type React from "react"
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
 import { SiteHeader } from "@/components/site-header"
@@ -11,6 +11,13 @@ import { QuickViewProvider } from "@/lib/quick-view-context"
 import GoogleAnalytics from "@/components/google-analytics"
 
 const inter = Inter({ subsets: ["latin"] })
+
+export const viewport: Viewport = {
+  colorScheme: "light",
+  themeColor: "#0ea5e9",
+  width: "device-width",
+  initialScale: 1,
+}
 
 export const metadata: Metadata = {
   title: {
@@ -38,9 +45,6 @@ export const metadata: Metadata = {
   generator: 'Next.js',
   applicationName: "Powerpill",
   referrer: "origin-when-cross-origin",
-  colorScheme: "light",
-  themeColor: "#0ea5e9",
-  viewport: "width=device-width, initial-scale=1",
   robots: {
     index: true,
     follow: true,

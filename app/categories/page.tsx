@@ -6,13 +6,14 @@ import { Metadata } from "next"
 import { generateSEO, pageKeywords } from "@/lib/seo"
 
 export const metadata: Metadata = generateSEO({
-  title: "ED Medication Categories | Sildenafil, Tadalafil, Vardenafil | Powerpill",
-  description: "Browse our ED medication categories. Choose from Sildenafil (25mg-200mg), Tadalafil (20mg-80mg), and Vardenafil (20mg-60mg). Compare prices and dosages.",
+  title: "Medication Categories | Powerpill",
+  description: "Browse our medication categories. Choose from pain relief, anti-anxiety, sleep aids, and ED medications.",
   keywords: pageKeywords.categories,
   canonical: "https://powerpill.us/categories",
 })
 
 const categories = [
+  // ED Medications
   {
     id: "sildenafil",
     title: "Sildenafil",
@@ -36,6 +37,106 @@ const categories = [
     details: "Available in 20mg, 40mg, and 60mg strengths",
     image: "/images/lavitra-20.webp",
     color: "from-purple-500 to-purple-600"
+  },
+  // Pain Medications
+  {
+    id: "hydrocodone",
+    title: "Hydrocodone",
+    description: "Effective pain relief for moderate to severe pain",
+    details: "Available in various strengths and combinations",
+    image: "/images/Hydrocodone/HYDROCODONE10.jpg",
+    color: "from-red-500 to-red-600"
+  },
+  {
+    id: "oxycodone",
+    title: "Oxycodone",
+    description: "Potent pain relief for moderate to severe pain",
+    details: "Available in multiple strengths for tailored pain management",
+    image: "/images/Oxycodone/oxycodone30mg-300x225.jpg",
+    color: "from-orange-500 to-orange-600"
+  },
+  {
+    id: "oxycontin",
+    title: "Oxycontin",
+    description: "Long-acting pain relief for around-the-clock management",
+    details: "Extended-release formulation for lasting relief",
+    image: "/images/Oxycontin/Oxycontin40mg-300x225.jpg",
+    color: "from-amber-500 to-amber-600"
+  },
+  {
+    id: "percocet",
+    title: "Percocet",
+    description: "Combination pain medication for effective relief",
+    details: "Contains oxycodone and acetaminophen for dual-action relief",
+    image: "/images/Percocet/Percocet10_325mg-300x225.jpg",
+    color: "from-yellow-500 to-yellow-600"
+  },
+  {
+    id: "tramadol",
+    title: "Tramadol",
+    description: "Moderate pain relief with lower risk of dependency",
+    details: "Synthetic opioid for moderate to moderately severe pain",
+    image: "/images/Tramadol/tramadol200mg-2.jpg",
+    color: "from-lime-500 to-lime-600"
+  },
+  // Anti-Anxiety Medications
+  {
+    id: "xanax",
+    title: "Xanax",
+    description: "Fast-acting relief for anxiety and panic disorders",
+    details: "Available in multiple strengths and formulations",
+    image: "/images/Xanax/Xanax2mg-300x225.jpg",
+    color: "from-teal-500 to-teal-600"
+  },
+  {
+    id: "alprazolam",
+    title: "Alprazolam",
+    description: "Generic Xanax for anxiety and panic disorders",
+    details: "More affordable alternative with the same effectiveness",
+    image: "/images/Alprazolam/ALPRAZOLAM2MG.jpg",
+    color: "from-cyan-500 to-cyan-600"
+  },
+  {
+    id: "ativan",
+    title: "Ativan",
+    description: "Relief for anxiety, insomnia, and seizures",
+    details: "Intermediate-acting benzodiazepine for multiple uses",
+    image: "/images/Ativan/ativan-2mg-300x225.jpg",
+    color: "from-sky-500 to-sky-600"
+  },
+  {
+    id: "valium",
+    title: "Valium",
+    description: "Long-acting relief for anxiety, muscle spasms, and seizures",
+    details: "Versatile medication with multiple therapeutic uses",
+    image: "/images/Valium/Valium-10mg-1.png",
+    color: "from-indigo-500 to-indigo-600"
+  },
+  // Sleep Aids
+  {
+    id: "ambien",
+    title: "Ambien",
+    description: "Fast-acting sleep aid for insomnia",
+    details: "Helps you fall asleep quickly and stay asleep",
+    image: "/images/Ambien/Ambien10mg-300x225.jpg",
+    color: "from-violet-500 to-violet-600"
+  },
+  {
+    id: "zolpidem",
+    title: "Zolpidem",
+    description: "Generic Ambien for insomnia treatment",
+    details: "More affordable alternative for better sleep",
+    image: "/images/Zolpidem/Zolpidem-10mg.png",
+    color: "from-purple-500 to-purple-600"
+  },
+  // ADHD Medications
+  {
+    id: "adderall",
+    title: "Adderall",
+    description: "ADHD and narcolepsy treatment",
+    details: "Available in immediate and extended-release formulations",
+    image: "/images/Adderall/Adderall30mg.jpg",
+    color: "from-fuchsia-500 to-fuchsia-600"
   }
 ]
 
@@ -50,7 +151,7 @@ export default function CategoriesPage() {
               Product Categories
             </h1>
             <p className="text-gray-600 text-lg">
-              Explore our range of FDA-approved ED medications. Choose the treatment that's right for you.
+              Explore our comprehensive range of medications. Choose the treatment that's right for you.
             </p>
           </div>
         </div>
