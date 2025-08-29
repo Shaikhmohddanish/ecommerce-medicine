@@ -2,10 +2,12 @@
 
 import { Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { useMediaQuery } from "@/hooks/use-media-query"
 
 export function FloatingPhone() {
-  const phoneNumber = "+1-888-419-4055"
-
+  const isDesktop = useMediaQuery("(min-width: 768px)")
+  const phoneNumber = "+1-888-683-2430"
+  
   const handleCall = () => {
     window.location.href = `tel:${phoneNumber}`
   }

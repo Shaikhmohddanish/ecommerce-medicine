@@ -83,7 +83,7 @@ export default function Home() {
             "name": "Powerpill",
             "description": "Online pharmacy specializing in erectile dysfunction medications",
             "url": "https://powerpill.us",
-            "telephone": "+1-888-419-4055",
+            "telephone": "+1-888-683-2430",
             "email": "sales@powerpill.us",
             "address": {
               "@type": "PostalAddress",
