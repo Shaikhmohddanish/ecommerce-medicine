@@ -85,7 +85,7 @@ export default function AboutPage() {
                 <h3 className="font-semibold mb-2">Powerpill Healthcare</h3>
                 <p className="text-gray-600">1821 W. Verdugo Ave. Suite 102</p>
                 <p className="text-gray-600">Burbank, CA 91506</p>
-                <p className="text-gray-600 mt-2">Phone: 1 (888) 419-4055</p>
+                <p className="text-gray-600 mt-2">Phone: 1 (888) 683-2430</p>
                 <p className="text-gray-600">Email: sales@powerpill.us</p>
               </div>
             </section>

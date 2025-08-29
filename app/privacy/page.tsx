@@ -363,7 +363,7 @@ export default function PrivacyPolicyPage() {
                 Suite 102<br />
                 Burbank CA 91506<br />
                 USA<br />
-                Tel: 1 (888) 419-4055
+                Tel: 1 (888) 683-2430
               </div>
               <div className="mb-3 break-words">
                 <strong>Curexa (EHT Pharmacy LLC)</strong><br />

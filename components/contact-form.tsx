@@ -171,7 +171,7 @@ export default function ContactForm() {
             <Phone className="h-5 w-5 text-primary mr-2" />
             <h3 className="font-semibold text-gray-900">Phone</h3>
           </div>
-          <p className="text-gray-600">1 (888) 419-4055</p>
+          <p className="text-gray-600">1 (888) 683-2430</p>
           <p className="text-sm text-gray-500 mt-1">Mon-Fri: 9AM-6PM EST</p>
         </div>
 
