@@ -172,7 +172,7 @@ export default function TermsPage() {
               <span className="font-semibold">Powerpill.</span><br />
               1821 W. Verdugo Ave., Suite 102<br />
               Burbank CA 91506 USA<br />
-              Tel: 1 (888) 683-2430
+              Tel: 1 (209) 690 4831
             </div>
           </section>
           <section>

@@ -22,7 +22,7 @@ export function SiteHeader() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const { cart } = useCart()
-  const phoneNumber = "+1-888-683-2430"
+  const phoneNumber = "+1-209-690-4831"
 
   const handleCall = () => {
     window.location.href = `tel:${phoneNumber}`

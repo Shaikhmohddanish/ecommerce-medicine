@@ -6,7 +6,7 @@ import { useMediaQuery } from "@/hooks/use-media-query"
 
 export function FloatingPhone() {
   const isDesktop = useMediaQuery("(min-width: 768px)")
-  const phoneNumber = "+1-888-683-2430"
+  const phoneNumber = "+1-209-690-4831"
   
   const handleCall = () => {
     window.location.href = `tel:${phoneNumber}`

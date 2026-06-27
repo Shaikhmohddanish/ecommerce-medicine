@@ -133,7 +133,7 @@ export default function RootLayout({
               "logo": "https://powerpill.us/images/powerpill-logo.png",
               "contactPoint": {
                 "@type": "ContactPoint",
-                "telephone": "+1-888-683-2430",
+                "telephone": "+1-209-690-4831",
                 "email": "sales@powerpill.us",
                 "contactType": "customer service",
                 "availableLanguage": "English"
